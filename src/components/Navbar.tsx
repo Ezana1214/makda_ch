@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import TheForkWidget from './TheForkWidget';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +20,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { to: '/', label: 'ACCUEIL' },
-    { to: '/menu', label: 'MENU' },
-    { to: '/catering', label: 'SERVICE TRAITEUR' },
-    { to: '/histoire', label: 'NOTRE HISTOIRE' },
-    { to: '/contact', label: 'CONTACT' },
+    { to: '/', label: t('nav.home') },
+    { to: '/menu', label: t('nav.menu') },
+    { to: '/catering', label: t('nav.catering') },
+    { to: '/histoire', label: t('nav.history') },
+    { to: '/contact', label: t('nav.contact') },
   ];
 
   const isActive = (path: string) => location.pathname === path;
