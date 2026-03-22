@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import TheForkWidget from './TheForkWidget';
 
-interface NavbarProps {
-  onReserveClick: () => void;
-}
-
-const Navbar = ({ onReserveClick }: NavbarProps) => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -57,13 +54,9 @@ const Navbar = ({ onReserveClick }: NavbarProps) => {
             ))}
           </div>
 
-          <button
-            onClick={onReserveClick}
-            className="hidden lg:block bg-brown-dark text-white px-6 py-2.5 rounded-full hover:bg-brown-deep transition-colors text-sm tracking-wide"
-            style={{ fontWeight: 100 }}
-          >
-            RÉSERVER
-          </button>
+          <div className="hidden lg:block">
+            <TheForkWidget />
+          </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,16 +82,9 @@ const Navbar = ({ onReserveClick }: NavbarProps) => {
                   {link.label}
                 </Link>
               ))}
-              <button
-                onClick={() => {
-                  onReserveClick();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="bg-brown-dark text-white px-6 py-3 rounded-full hover:bg-brown-deep transition-colors text-sm tracking-wide"
-                style={{ fontWeight: 100 }}
-              >
-                RÉSERVER
-              </button>
+              <div onClick={() => setIsMobileMenuOpen(false)}>
+                <TheForkWidget />
+              </div>
             </div>
           </div>
         )}

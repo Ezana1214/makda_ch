@@ -3,12 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import GoogleReviewBadge from '../components/GoogleReviewBadge';
+import TheForkWidget from '../components/TheForkWidget';
 
-interface HomeProps {
-  onReserveClick: () => void;
-}
-
-const Home = ({ onReserveClick }: HomeProps) => {
+const Home = () => {
   return (
     <>
       <Helmet>
@@ -42,7 +39,7 @@ const Home = ({ onReserveClick }: HomeProps) => {
           <p className="text-lg md:text-xl mb-10 text-text max-w-3xl mx-auto" style={{ fontWeight: 100 }}>
             Une expérience authentique à Bernex, où chaque plat raconte une histoire millénaire de partage et de saveurs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Link
               to="/menu"
               className="text-brown-dark px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-base inline-flex items-center justify-center gap-2"
@@ -50,13 +47,7 @@ const Home = ({ onReserveClick }: HomeProps) => {
             >
               Découvrir le Menu
             </Link>
-            <button
-              onClick={onReserveClick}
-              className="border border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-brown-dark transition-colors text-base backdrop-blur-sm bg-white/10"
-              style={{ fontWeight: 100 }}
-            >
-              Réserver une table
-            </button>
+            <TheForkWidget />
           </div>
           <div className="flex items-center justify-center">
             <GoogleReviewBadge />
