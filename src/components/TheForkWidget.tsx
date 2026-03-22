@@ -22,28 +22,35 @@ const TheForkWidget = () => {
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
-            border: 1px solid;
+            border: 1px solid #5A2B20;
             z-index: 9999999;
-            background-color: #fff;
-            border-radius: 4px;
+            background-color: #5A2B20;
+            border-radius: 9999px;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
-            height: 42px;
+            height: 48px;
             width: 220px;
-            border-color: hsl(174, 100%, 20%);
-            color: hsl(174, 100%, 20%);
+            transition: all 0.3s ease;
+          }
+          .tf-widget-button:hover {
+            background-color: #401400;
+            border-color: #401400;
           }
           .tf-button-link {
             text-decoration: none;
-            color: hsl(174, 100%, 20%);
-            font-family: Raleway, sans-serif;
-            font-size: 1.1em;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 1em;
+            font-weight: 100;
             width: 100%;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .tf-button-link:hover {
-            font-weight: 700;
+            font-weight: 300;
             background: none !important;
           }
         `}
