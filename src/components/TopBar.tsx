@@ -22,7 +22,7 @@ const TopBar = () => {
           <a href="https://www.instagram.com/makda_restaurant/" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
             <Instagram size={16} />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
+          <a href="https://www.facebook.com/profile.php?id=61561990207554" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
             <Facebook size={16} />
           </a>
           <div className="flex gap-2 ml-2">
