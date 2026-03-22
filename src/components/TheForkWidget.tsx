@@ -1,14 +1,14 @@
 const TheForkWidget = () => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open('https://widget.thefork.com/c210f176-61da-4d21-acdb-fc90eeae5a6c', '_blank', 'noopener');
+    window.open('https://www.facebook.com/profile.php?id=61561990207554', '_blank', 'noopener');
   };
 
   return (
     <div className="tf-widget-button">
       <a
         className="tf-button-link"
-        href="https://widget.thefork.com/c210f176-61da-4d21-acdb-fc90eeae5a6c"
+        href="https://www.facebook.com/profile.php?id=61561990207554"
         target="_blank"
         rel="noopener"
         onClick={handleClick}
