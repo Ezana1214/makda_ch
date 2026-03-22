@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Facebook } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -61,7 +61,16 @@ const Footer = () => {
 
         <div className="border-t border-brown-dark/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm" style={{ color: '#5A2B20', fontWeight: 100 }}>
           <p>&copy; 2025 Makda Restaurant. Tous droits réservés.</p>
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.facebook.com/profile.php?id=61561990207554"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gold-muted transition-colors flex items-center gap-2"
+              aria-label="Facebook"
+            >
+              <Facebook size={20} />
+            </a>
             <a href="#" className="hover:text-gold-muted transition-colors">
               Confidentialité
             </a>
