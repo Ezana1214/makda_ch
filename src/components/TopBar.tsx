@@ -16,7 +16,7 @@ const TopBar = () => {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-white/90">Ouvert Mar-Dim</span>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
+          <a href="https://www.instagram.com/makda_restaurant/" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
             <Instagram size={16} />
           </a>
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
