@@ -1,17 +1,11 @@
 const TheForkWidget = () => {
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.open('https://www.facebook.com/profile.php?id=61561990207554', '_blank', 'noopener');
-  };
-
   return (
     <div className="tf-widget-button">
       <a
         className="tf-button-link"
-        href="https://www.facebook.com/profile.php?id=61561990207554"
+        href="https://widget.thefork.com/c210f176-61da-4d21-acdb-fc90eeae5a6c"
         target="_blank"
         rel="noopener"
-        onClick={handleClick}
       >
         Réserver une table
       </a>
