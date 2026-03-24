@@ -127,7 +127,7 @@ const Menu = () => {
         name: 'TELLA',
         description: 'BIÈRE TRADITIONNELLE ARTISANALE, LÉGÈRE ET DOUCE, BRASSÉE AVEC DES CÉRÉALES ET DES ÉPICES. UNE BOISSON CONVIVIALE AU GOÛT SUBTIL ET AUTHENTIQUE',
         price: '5 CHF',
-        image: 'https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Tella.jpeg',
       },
       {
         name: 'BIÈRE PÈRE JAKOB',
