@@ -21,7 +21,7 @@ const Menu = () => {
         name: 'SAMBUSA VÉGÉTARIEN (3 PIÈCES)',
         description: 'TRIANGLE DE PÂTE FINEMENT CROUSTILLANTE, FARCIE DE LÉGUMES ÉPICÉS, RELEVÉE D\'UNE POINTE DE CUMIN ET DE CORIANDRE, ACCOMPAGNÉ DE NOTRE AWAZÉ — UNE SAUCE TRADITIONNELLE À BASE DE PIMENT, D\'AIL ET D\'ÉPICES FERMENTÉES',
         price: '6 CHF',
-        image: '/sambusa.jpeg',
+        image: '/source/sambusa.jpeg',
       },
     ],
     carnes: [
