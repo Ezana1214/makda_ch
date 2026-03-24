@@ -107,7 +107,7 @@ const Menu = () => {
         name: 'CHASSELAS',
         description: 'SEC, FLORAL ET FRAIS, TOUCHE DE LEVURE EN FINALE (DOMAINE DE BEAUVENT)',
         price: '5 CHF / 32 CHF',
-        image: 'https://images.pexels.com/photos/1407846/pexels-photo-1407846.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/chasselas.jpg',
       },
       {
         name: 'ROSÉ DE GAMAY',
