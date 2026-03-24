@@ -10,7 +10,7 @@ const Menu = () => {
     { id: 'entrees', label: 'Entrées' },
     { id: 'carnes', label: 'Plats Carnés*' },
     { id: 'vegetariens', label: 'Plats Végétariens' },
-    { id: 'desserts', label: 'Desserts & Café' },
+    { id: 'desserts', label: 'Desserts' },
     { id: 'vins', label: 'Vins' },
     { id: 'boissons', label: 'Boissons' },
   ];
