@@ -75,7 +75,7 @@ const Menu = () => {
         name: 'CRÈME GLACÉES',
         description: 'DES GLACES ARTISANALES, FABRIQUÉES À BERNEX AVEC DES INGRÉDIENTS NATURELS ET UN SAVOIR-FAIRE LOCAL IRRÉPROCHABLE. SIMPLES, PURES ET INCROYABLEMENT SAVOUREUSES (CARAMEL BEURRE SALÉ, FIOR DI LATTE, CHOCOLAT)',
         price: '6 CHF',
-        image: 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/PauseGlace.png',
       },
     ],
     vins: [
