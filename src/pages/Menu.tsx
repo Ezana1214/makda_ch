@@ -41,7 +41,7 @@ const Menu = () => {
         name: 'TIBS (BŒUF OU AGNEAU)',
         description: 'TENDRES CUBES DE VIANDES MARINÉS DANS NOTRE SAUCE SIGNATURE PUIS SAUTÉS À LA POÊLE (AVEC OIGNON ROUGE, PIMENTS, AIL FRAIS ET TOMATES)',
         price: '26 CHF',
-        image: 'https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Tibs.jpeg',
       },
       {
         name: 'DORO WET (POULET)',
