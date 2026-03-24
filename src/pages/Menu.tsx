@@ -35,7 +35,7 @@ const Menu = () => {
         name: 'ZIGNI (BŒUF)',
         description: 'RAGOÛT À BASE DE VIANDE ET ASSAISONNÉS AU PIMENTS, OIGNONS ET AILS',
         price: '22 CHF',
-        image: 'https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Zigni.jpeg',
       },
       {
         name: 'TIBS (BŒUF OU AGNEAU)',
