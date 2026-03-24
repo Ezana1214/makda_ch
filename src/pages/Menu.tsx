@@ -61,7 +61,7 @@ const Menu = () => {
         name: 'MISIR WAT',
         description: 'LENTILLES ROUGES DANS LA SAUCE BERBERÉ (AVEC AIL FRAIS ET OIGNON)',
         price: '20 CHF',
-        image: 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/misir-wot_large.webp',
       },
       {
         name: 'SHIRO',
