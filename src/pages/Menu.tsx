@@ -95,7 +95,7 @@ const Menu = () => {
         name: 'PINOT NOIR',
         description: 'NOTES DE VIOLETTE, FRUITS ROUGES ET SOUS-BOIS (DOMAINE DE BEAUVENT)',
         price: '6 CHF / 38 CHF',
-        image: 'https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/pinotNoir.jpg',
       },
       {
         name: 'GAMAY',
