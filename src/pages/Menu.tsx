@@ -89,7 +89,7 @@ const Menu = () => {
         name: 'TROIS HELVÈTES',
         description: 'TRÈS FRUITÉ ET ÉPICÉ, AVEC DE BEAUX TANINS SOYEUX, BELLE STRUCTURE (VINS GUYOT)',
         price: '6 CHF / 36 CHF',
-        image: 'https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Trois-helvetes-1.png',
       },
       {
         name: 'PINOT NOIR',
