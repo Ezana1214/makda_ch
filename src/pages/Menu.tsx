@@ -47,7 +47,7 @@ const Menu = () => {
         name: 'DORO WET (POULET)',
         description: 'CUISSE DE POULET (MIJOTÉE AVEC OIGNON, AIL, BERBERÉ) FINIE AVEC DU KIBBEH (BEURRE ÉPICÉ) AVEC UN ŒUF DUR ET DE L\'AYIB (FROMAGE FRAIS)',
         price: '24 CHF',
-        image: 'https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Doro_Wet.jpeg',
       },
       {
         name: 'DORO ALECHA (POULET)',
