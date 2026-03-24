@@ -83,7 +83,7 @@ const Menu = () => {
         name: 'DIOLINOIR',
         description: 'ROBE SOMBRE, ARÔMES ÉPICÉS ET FRUITÉS, TOUCHE SAUVAGE (VINS GUYOT)',
         price: '6.5 CHF / 42 CHF',
-        image: 'https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Diolinoir.png',
       },
       {
         name: 'TROIS HELVÈTES',
