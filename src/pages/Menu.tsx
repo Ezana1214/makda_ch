@@ -133,7 +133,7 @@ const Menu = () => {
         name: 'BIÈRE PÈRE JAKOB',
         description: 'BIÈRE ARTISANALE DE LA BRASSERIE PÈRE JAKOB À SORAL, BLONDE LÉGÈRE AUX ARÔMES DE CÉRÉALES TOASTÉES ET D\'AGRUMES, AU CORPS ÉQUILIBRÉ',
         price: '6 CHF',
-        image: 'https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/BiereJakob.jpg',
       },
     ],
   };
