@@ -29,7 +29,7 @@ const Menu = () => {
         name: 'KITFO (BŒUF)',
         description: 'VERSION ÉTHIOPIENNE DU STEAK TARTARE : VIANDE DE BŒUF HACHÉE MÉLANGÉE À DU KIBBEH (BEURRE ÉPICÉ), DU MITMITA (PIMENTS EN POUDRE)',
         price: '28 CHF',
-        image: 'https://images.pexels.com/photos/8477849/pexels-photo-8477849.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Kitfo.jpeg',
       },
       {
         name: 'ZIGNI (BŒUF)',
