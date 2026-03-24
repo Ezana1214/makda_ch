@@ -113,7 +113,7 @@ const Menu = () => {
         name: 'ROSÉ DE GAMAY',
         description: 'FRAIS, FRUITÉ ET ROND, AVEC UNE BELLE PERSISTANCE (DOMAINE DE BEAUVENT)',
         price: '5 CHF',
-        image: 'https://images.pexels.com/photos/2294349/pexels-photo-2294349.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/rosedeGamay.jpg',
       },
     ],
     boissons: [
