@@ -53,7 +53,7 @@ const Menu = () => {
         name: 'DORO ALECHA (POULET)',
         description: 'CUISSES DE POULET (MIJOTÉE AVEC OIGNON, AIL) ET UNE SAUCE DOUCE AU CURCUMA',
         price: '24 CHF',
-        image: 'https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Doro_Alecha.jpeg',
       },
     ],
     vegetariens: [
