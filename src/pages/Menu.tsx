@@ -121,7 +121,7 @@ const Menu = () => {
         name: 'TEJ',
         description: 'HYDROMEL TRADITIONNEL AU MIEL FERMENTÉ, DOUX ET SUBTILEMENT FLORAL',
         price: '5 CHF',
-        image: 'https://images.pexels.com/photos/2702674/pexels-photo-2702674.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Tej.jpeg',
       },
       {
         name: 'TELLA',
