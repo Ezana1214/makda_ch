@@ -67,7 +67,7 @@ const Menu = () => {
         name: 'SHIRO',
         description: 'POIS CASSÉS MOULUS RÔTIS AVEC DE L\'OIGNON, DE L\'AIL FRAIS, DES TOMATES',
         price: '20 CHF',
-        image: 'https://images.pexels.com/photos/4198018/pexels-photo-4198018.jpeg?auto=compress&cs=tinysrgb&w=400',
+        image: '/source/Shiro.jpeg',
       },
     ],
     desserts: [
