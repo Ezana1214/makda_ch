@@ -74,8 +74,9 @@ const History = () => {
               className="relative h-[500px]"
             >
               <img
-                src="https://images.pexels.com/photos/5638732/pexels-photo-5638732.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Mesob traditionnel"
+                src="/source/partage-makda.webp"
+                loading="lazy"
+                alt="Clients partageant un repas dans la salle du restaurant Makda"
                 className="w-full h-full object-cover rounded-2xl shadow-2xl"
               />
             </motion.div>
