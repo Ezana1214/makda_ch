@@ -224,7 +224,7 @@ const Menu = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#FFDCB5' }}>
+      <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

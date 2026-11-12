@@ -82,7 +82,7 @@ const Home = () => {
         </motion.div>
       </section>
 
-      <section className="py-24 px-4" style={{ backgroundColor: '#FFDBB5' }}>
+      <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div

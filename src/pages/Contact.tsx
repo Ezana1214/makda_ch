@@ -95,7 +95,7 @@ const Contact = () => {
         </motion.div>
       </section>
 
-      <section className="py-24 px-4" style={{ backgroundColor: '#FFDBB5' }}>
+      <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <motion.div
@@ -259,7 +259,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#FFDBB5' }}>
+      <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="w-full max-w-4xl h-[400px] rounded-2xl overflow-hidden shadow-lg">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.164627468604!2d6.0696773!3d46.1673900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c7b2e3c000001%3A0x6280628062806280!2sRue%20de%20Bernex%20224%2C%201233%20Bernex%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1766939229453"

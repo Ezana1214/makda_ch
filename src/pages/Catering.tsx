@@ -62,7 +62,7 @@ const Catering = () => {
         </motion.div>
       </section>
 
-      <section className="py-24 px-4" style={{ backgroundColor: '#FFDBB5' }}>
+      <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -87,7 +87,7 @@ const Catering = () => {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="rounded-full flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: '#FFDCB5', border: '2px solid #8B6F47', width: '44px', height: '44px' }}>
+                    <div className="rounded-full flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD', border: '2px solid #8B6F47', width: '44px', height: '44px' }}>
                       <Check size={20} className="text-brown-dark" />
                     </div>
                     <span style={{ fontWeight: 100, color: '#401400' }}>{benefit}</span>
@@ -121,7 +121,7 @@ const Catering = () => {
         </div>
       </section>
 
-      <section className="py-24 px-4" style={{ backgroundColor: '#FFDBB5' }}>
+      <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl" style={{ backgroundColor: '#401400', borderRadius: '24px', padding: '40px' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
