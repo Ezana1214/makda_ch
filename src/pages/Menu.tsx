@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
 import { AlertCircle } from 'lucide-react';
+import BuffetBanner from '../components/BuffetBanner';
 
 const Menu = () => {
   const [activeTab, setActiveTab] = useState('entrees');
@@ -168,6 +169,8 @@ const Menu = () => {
           <p className="text-xl" style={{ fontWeight: 100, color: '#ECEDEA' }}>Une exploration des saveurs authentiques, des épices envoûtantes et des<br />traditions culinaires de l'Éthiopie.</p>
         </motion.div>
       </section>
+
+      <BuffetBanner />
 
       <section className="py-16 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl">

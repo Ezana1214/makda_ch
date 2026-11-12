@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import GoogleReviewBadge from '../components/GoogleReviewBadge';
 import TheForkWidget from '../components/TheForkWidget';
 import { useLanguage } from '../context/LanguageContext';
+import BuffetBanner from '../components/BuffetBanner';
 
 const Home = () => {
   const { language } = useLanguage();
@@ -15,7 +16,7 @@ const Home = () => {
       <Seo
         path="/"
         title="Makda – Restaurant éthiopien et érythréen à Bernex, Genève"
-        description="Injera maison au teff, plats mijotés, options végétariennes, vegan et sans gluten. Restaurant éthiopien et érythréen à Bernex, Genève. Réservez votre table."
+        description="Restaurant éthiopien et érythréen à Bernex (Genève) : injera sans gluten, plats mijotés, options vegan, buffet à volonté le 1er dimanche du mois. Parking gratuit."
         jsonLd={restaurantJsonLd}
       />
 
@@ -84,6 +85,8 @@ const Home = () => {
           </div>
         </motion.div>
       </section>
+
+      <BuffetBanner />
 
       <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl">

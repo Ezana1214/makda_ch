@@ -70,7 +70,7 @@ const Contact = () => {
       <Seo
         path="/contact"
         title="Contact, horaires et accès – Makda, restaurant à Bernex"
-        description="Makda, Rue de Bernex 224, 1233 Bernex. Ouvert du mardi au dimanche. Réservation au +41 76 679 28 45 ou via le formulaire."
+        description="Makda, Rue de Bernex 224, 1233 Bernex. Ouvert du mardi au dimanche, parking gratuit et terrasse. Réservation au +41 76 679 28 45 ou via le formulaire."
       />
 
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">

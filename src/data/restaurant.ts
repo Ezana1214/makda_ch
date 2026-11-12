@@ -23,6 +23,24 @@ export const restaurant = {
   theforkUrl: 'https://widget.thefork.com/c210f176-61da-4d21-acdb-fc90eeae5a6c',
 };
 
+// Buffet à volonté (source : affiche Instagram, nov. 2026)
+export const buffet = {
+  title: 'Buffet à volonté le premier dimanche du mois',
+  when: 'Chaque 1er dimanche du mois',
+  hours: 'de 12h00 à 17h00',
+  price: '30 CHF par personne',
+  includes: 'Café traditionnel et sirops à discrétion inclus. Réservation conseillée.',
+};
+
+// Services et équipements (confirmés par Ezana le 12.11.2026)
+export const amenities = {
+  freeParking: true,
+  terrace: true,
+  dogsAllowed: true,
+  highChairs: true,
+  glutenFreeInjera: true, // injera 100 % teff
+};
+
 // Horaires d'ouverture
 export const hours = {
   // Pour l'affichage
@@ -51,7 +69,7 @@ export const restaurantJsonLd = {
   name: 'Makda',
   alternateName: 'Makda – Restaurant éthiopien et érythréen',
   description:
-    "Restaurant éthiopien et érythréen à Bernex (Genève) : injera maison au teff, plats mijotés, options végétariennes, vegan et sans gluten, cérémonie du café et service traiteur.",
+    "Restaurant éthiopien et érythréen à Bernex (Genève) : injera 100 % teff sans gluten, plats mijotés, options végétariennes et vegan, buffet à volonté le premier dimanche du mois, terrasse, parking gratuit et service traiteur.",
   url: `${SITE_URL}/`,
   image: [`${SITE_URL}/og-image.jpg`, `${SITE_URL}/source/salle-makda-1920.webp`],
   logo: `${SITE_URL}/makda-logo.webp`,
@@ -61,6 +79,12 @@ export const restaurantJsonLd = {
   currenciesAccepted: 'CHF',
   servesCuisine: ['Éthiopienne', 'Érythréenne', 'Africaine', 'Végétarienne', 'Vegan', 'Sans gluten'],
   acceptsReservations: true,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Parking gratuit', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Terrasse', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Chiens acceptés', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Chaises hautes', value: true },
+  ],
   hasMenu: `${SITE_URL}/menu`,
   address: {
     '@type': 'PostalAddress',
