@@ -12,8 +12,9 @@ const History = () => {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/vlcsnap-2025-11-16-22h44m56s190.png"
-            alt="Histoire Makda"
+            src="/source/histoire-makda.webp"
+            fetchPriority="high"
+            alt="Panier traditionnel dans la salle du restaurant Makda"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/50"></div>
