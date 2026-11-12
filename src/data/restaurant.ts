@@ -13,7 +13,7 @@ export const restaurant = {
   city: 'Bernex',
   canton: 'GE',
   country: 'CH',
-  geo: { lat: 46.177, lng: 6.083 },
+  geo: { lat: 46.1772727, lng: 6.0773402 },
   phone: '+41766792845',
   phoneDisplay: '+41 76 679 28 45',
   email: 'contact@makda.ch',
