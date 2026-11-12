@@ -19,8 +19,11 @@ const Home = () => {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.pexels.com/photos/1484516/pexels-photo-1484516.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt={language === 'fr' ? 'Cuisine éthiopienne authentique' : 'Authentic Ethiopian cuisine'}
+            src="/source/salle-makda-1920.webp"
+            srcSet="/source/salle-makda-960.webp 960w, /source/salle-makda-1920.webp 1920w"
+            sizes="100vw"
+            fetchPriority="high"
+            alt={language === 'fr' ? 'Salle du restaurant Makda à Bernex' : 'Dining room of Makda restaurant in Bernex'}
             className="w-full h-full object-cover bg-cover bg-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20"></div>
