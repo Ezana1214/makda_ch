@@ -22,7 +22,7 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: t('nav.home') },
     { to: '/menu', label: t('nav.menu') },
-    { to: '/catering', label: t('nav.catering') },
+    { to: '/traiteur', label: t('nav.catering') },
     { to: '/histoire', label: t('nav.history') },
     { to: '/contact', label: t('nav.contact') },
   ];
@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            <img src="/makda-logo.png" alt="MAKDA" className="h-16 w-auto" />
+            <img src="/makda-logo.webp" alt="Makda – retour à l'accueil" width="139" height="64" className="h-16 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -62,6 +62,8 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={isMobileMenuOpen}
             className="lg:hidden text-brown-dark"
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

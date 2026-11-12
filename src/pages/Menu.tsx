@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
 import { AlertCircle } from 'lucide-react';
 
@@ -21,7 +21,7 @@ const Menu = () => {
         name: 'SAMBUSA VÉGÉTARIEN (3 PIÈCES)',
         description: 'TRIANGLE DE PÂTE FINEMENT CROUSTILLANTE, FARCIE DE LÉGUMES ÉPICÉS, RELEVÉE D\'UNE POINTE DE CUMIN ET DE CORIANDRE, ACCOMPAGNÉ DE NOTRE AWAZÉ — UNE SAUCE TRADITIONNELLE À BASE DE PIMENT, D\'AIL ET D\'ÉPICES FERMENTÉES',
         price: '6 CHF',
-        image: '/source/sambusa.jpeg',
+        image: '/source/menu-sambusa.webp',
       },
     ],
     carnes: [
@@ -29,31 +29,31 @@ const Menu = () => {
         name: 'KITFO (BŒUF)',
         description: 'VERSION ÉTHIOPIENNE DU STEAK TARTARE : VIANDE DE BŒUF HACHÉE MÉLANGÉE À DU KIBBEH (BEURRE ÉPICÉ), DU MITMITA (PIMENTS EN POUDRE)',
         price: '28 CHF',
-        image: '/source/Kitfo.jpeg',
+        image: '/source/menu-kitfo.webp',
       },
       {
         name: 'ZIGNI (BŒUF)',
-        description: 'RAGOÛT À BASE DE VIANDE ET ASSAISONNÉS AU PIMENTS, OIGNONS ET AILS',
+        description: 'RAGOÛT DE VIANDE ASSAISONNÉ AUX PIMENTS, OIGNONS ET AIL',
         price: '22 CHF',
-        image: '/source/Zigni.jpeg',
+        image: '/source/menu-zigni.webp',
       },
       {
         name: 'TIBS (BŒUF OU AGNEAU)',
-        description: 'TENDRES CUBES DE VIANDES MARINÉS DANS NOTRE SAUCE SIGNATURE PUIS SAUTÉS À LA POÊLE (AVEC OIGNON ROUGE, PIMENTS, AIL FRAIS ET TOMATES)',
+        description: 'TENDRES CUBES DE VIANDE MARINÉS DANS NOTRE SAUCE SIGNATURE PUIS SAUTÉS À LA POÊLE (AVEC OIGNON ROUGE, PIMENTS, AIL FRAIS ET TOMATES)',
         price: '26 CHF',
-        image: '/source/Tibs.jpeg',
+        image: '/source/menu-tibs.webp',
       },
       {
         name: 'DORO WET (POULET)',
         description: 'CUISSE DE POULET (MIJOTÉE AVEC OIGNON, AIL, BERBERÉ) FINIE AVEC DU KIBBEH (BEURRE ÉPICÉ) AVEC UN ŒUF DUR ET DE L\'AYIB (FROMAGE FRAIS)',
         price: '24 CHF',
-        image: '/source/Doro_Wet.jpeg',
+        image: '/source/menu-doro-wet.webp',
       },
       {
         name: 'DORO ALECHA (POULET)',
-        description: 'CUISSES DE POULET (MIJOTÉE AVEC OIGNON, AIL) ET UNE SAUCE DOUCE AU CURCUMA',
+        description: 'CUISSES DE POULET (MIJOTÉES AVEC OIGNON, AIL) ET UNE SAUCE DOUCE AU CURCUMA',
         price: '24 CHF',
-        image: '/source/Doro_Alecha.jpeg',
+        image: '/source/menu-doro-alecha.webp',
       },
     ],
     vegetariens: [
@@ -61,21 +61,21 @@ const Menu = () => {
         name: 'MISIR WAT',
         description: 'LENTILLES ROUGES DANS LA SAUCE BERBERÉ (AVEC AIL FRAIS ET OIGNON)',
         price: '20 CHF',
-        image: '/source/misir-wot_large.webp',
+        image: '/source/menu-misir-wot-large.webp',
       },
       {
         name: 'SHIRO',
         description: 'POIS CASSÉS MOULUS RÔTIS AVEC DE L\'OIGNON, DE L\'AIL FRAIS, DES TOMATES',
         price: '20 CHF',
-        image: '/source/Shiro.jpeg',
+        image: '/source/menu-shiro.webp',
       },
     ],
     desserts: [
       {
-        name: 'CRÈME GLACÉES',
+        name: 'CRÈMES GLACÉES',
         description: 'DES GLACES ARTISANALES, FABRIQUÉES À BERNEX AVEC DES INGRÉDIENTS NATURELS ET UN SAVOIR-FAIRE LOCAL IRRÉPROCHABLE. SIMPLES, PURES ET INCROYABLEMENT SAVOUREUSES (CARAMEL BEURRE SALÉ, FIOR DI LATTE, CHOCOLAT)',
         price: '6 CHF',
-        image: '/source/PauseGlace.png',
+        image: '/source/menu-pauseglace.webp',
       },
     ],
     vins: [
@@ -83,19 +83,19 @@ const Menu = () => {
         name: 'DIOLINOIR',
         description: 'ROBE SOMBRE, ARÔMES ÉPICÉS ET FRUITÉS, TOUCHE SAUVAGE (VINS GUYOT)',
         price: '6.5 CHF / 42 CHF',
-        image: '/source/Diolinoir.png',
+        image: '/source/menu-diolinoir.webp',
       },
       {
         name: 'TROIS HELVÈTES',
         description: 'TRÈS FRUITÉ ET ÉPICÉ, AVEC DE BEAUX TANINS SOYEUX, BELLE STRUCTURE (VINS GUYOT)',
         price: '6 CHF / 36 CHF',
-        image: '/source/Trois-helvetes-1.png',
+        image: '/source/menu-trois-helvetes-1.webp',
       },
       {
         name: 'PINOT NOIR',
         description: 'NOTES DE VIOLETTE, FRUITS ROUGES ET SOUS-BOIS (DOMAINE DE BEAUVENT)',
         price: '6 CHF / 38 CHF',
-        image: '/source/pinotNoir.jpg',
+        image: '/source/menu-pinotnoir.webp',
       },
       {
         name: 'GAMAY',
@@ -107,13 +107,13 @@ const Menu = () => {
         name: 'CHASSELAS',
         description: 'SEC, FLORAL ET FRAIS, TOUCHE DE LEVURE EN FINALE (DOMAINE DE BEAUVENT)',
         price: '5 CHF / 32 CHF',
-        image: '/source/chasselas.jpg',
+        image: '/source/menu-chasselas.webp',
       },
       {
         name: 'ROSÉ DE GAMAY',
         description: 'FRAIS, FRUITÉ ET ROND, AVEC UNE BELLE PERSISTANCE (DOMAINE DE BEAUVENT)',
         price: '5 CHF',
-        image: '/source/rosedeGamay.jpg',
+        image: '/source/menu-rosedegamay.webp',
       },
     ],
     boissons: [
@@ -121,34 +121,38 @@ const Menu = () => {
         name: 'TEJ',
         description: 'HYDROMEL TRADITIONNEL AU MIEL FERMENTÉ, DOUX ET SUBTILEMENT FLORAL',
         price: '5 CHF',
-        image: '/source/Tej.jpeg',
+        image: '/source/menu-tej.webp',
       },
       {
         name: 'TELLA',
         description: 'BIÈRE TRADITIONNELLE ARTISANALE, LÉGÈRE ET DOUCE, BRASSÉE AVEC DES CÉRÉALES ET DES ÉPICES. UNE BOISSON CONVIVIALE AU GOÛT SUBTIL ET AUTHENTIQUE',
         price: '5 CHF',
-        image: '/source/Tella.jpeg',
+        image: '/source/menu-tella.webp',
       },
       {
         name: 'BIÈRE PÈRE JAKOB',
         description: 'BIÈRE ARTISANALE DE LA BRASSERIE PÈRE JAKOB À SORAL, BLONDE LÉGÈRE AUX ARÔMES DE CÉRÉALES TOASTÉES ET D\'AGRUMES, AU CORPS ÉQUILIBRÉ',
         price: '6 CHF',
-        image: '/source/BiereJakob.jpg',
+        image: '/source/menu-bierejakob.webp',
       },
     ],
   };
 
   return (
     <>
-      <Helmet>
-        <title>Notre Menu - Makda Restaurant</title>
-        <meta name="description" content="Découvrez notre menu de cuisine éthiopienne authentique : entrées, plats carnés, végétariens, desserts et boissons traditionnelles." />
-      </Helmet>
+      <Seo
+        path="/menu"
+        title="Menu éthiopien : injera, kitfo, tibs, plats végé – Makda"
+        description="La carte de Makda à Bernex : sambusa, kitfo, tibs, doro wat, lentilles et shiro végétariens, tej et vins genevois. Injera sans gluten au teff."
+      />
 
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/source/Assortiment.jpeg"
+            src="/source/assortiment-plats.webp"
+            fetchPriority="high"
+            srcSet="/source/assortiment-plats-960.webp 960w, /source/assortiment-plats.webp 1920w"
+            sizes="100vw"
             alt="Menu Makda"
             className="w-full h-full object-cover"
           />

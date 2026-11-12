@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { hours } from '../data/restaurant';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -62,23 +63,21 @@ const Contact = () => {
     });
   };
 
-  const openingHours = [
-    { day: 'Lundi', hours: 'Fermé' },
-    { day: 'Mar - Sam', hours: '11:30 - 14:30 18:30 - 23:00' },
-    { day: 'Dimanche', hours: '12:00 - 17:00' },
-  ];
+  const openingHours = hours.display;
 
   return (
     <>
-      <Helmet>
-        <title>Contact - Makda Restaurant</title>
-        <meta name="description" content="Contactez le restaurant Makda à Bernex, Genève. Téléphone, email, horaires d'ouverture et formulaire de contact." />
-      </Helmet>
+      <Seo
+        path="/contact"
+        title="Contact, horaires et accès – Makda, restaurant à Bernex"
+        description="Makda, Rue de Bernex 224, 1233 Bernex. Ouvert du mardi au dimanche. Réservation au +41 76 679 28 45 ou via le formulaire."
+      />
 
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/restaurant_at_night_(1) copy.png"
+            src="/source/facade-makda-nuit.webp"
+            fetchPriority="high"
             alt="Contact Makda"
             className="w-full h-full object-cover"
           />
@@ -262,14 +261,14 @@ const Contact = () => {
       <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="w-full max-w-4xl h-[400px] rounded-2xl overflow-hidden shadow-lg">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.164627468604!2d6.0696773!3d46.1673900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c7b2e3c000001%3A0x6280628062806280!2sRue%20de%20Bernex%20224%2C%201233%20Bernex%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1766939229453"
+            src="https://www.google.com/maps?q=Makda%2C%20Rue%20de%20Bernex%20224%2C%201233%20Bernex&hl=fr&z=16&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
-            allowFullScreen=""
+            allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Makda Restaurant Location"
+            title="Plan d'accès au restaurant Makda à Bernex"
           />
         </div>
       </section>

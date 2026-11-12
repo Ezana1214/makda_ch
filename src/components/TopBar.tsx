@@ -19,10 +19,10 @@ const TopBar = () => {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-white/90">{t('topbar.open')}</span>
-          <a href="https://www.instagram.com/makda_restaurant/" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
+          <a href="https://www.instagram.com/makda_restaurant/" target="_blank" rel="noopener noreferrer" aria-label="Makda sur Instagram" className="hover:text-gold-muted transition-colors">
             <Instagram size={16} />
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61561990207554" target="_blank" rel="noopener noreferrer" className="hover:text-gold-muted transition-colors">
+          <a href="https://www.facebook.com/profile.php?id=61561990207554" target="_blank" rel="noopener noreferrer" aria-label="Makda sur Facebook" className="hover:text-gold-muted transition-colors">
             <Facebook size={16} />
           </a>
           <div className="flex gap-2 ml-2">

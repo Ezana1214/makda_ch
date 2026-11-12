@@ -1,13 +1,14 @@
-import { Helmet } from 'react-helmet-async';
+import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
 
 const History = () => {
   return (
     <>
-      <Helmet>
-        <title>Notre Histoire - Makda Restaurant</title>
-        <meta name="description" content="Découvrez l'histoire et les traditions de la cuisine éthiopienne : le Mesob, la cérémonie du café Buna, et l'esprit du partage." />
-      </Helmet>
+      <Seo
+        path="/histoire"
+        title="Notre histoire et la cérémonie du café – Makda Bernex"
+        description="L'histoire de Makda et les traditions éthiopiennes et érythréennes : le partage autour du mesob, l'injera au teff et la cérémonie du café."
+      />
 
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -91,7 +92,7 @@ const History = () => {
               className="order-2 lg:order-1 relative h-[500px]"
             >
               <img
-                src="/design_sans_titre_(5).png"
+                src="/source/ceremonie-cafe.webp"
                 alt="Cérémonie du café"
                 className="w-full h-full object-cover rounded-2xl shadow-2xl"
               />

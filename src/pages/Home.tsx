@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../components/Seo';
+import { restaurantJsonLd } from '../data/restaurant';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import GoogleReviewBadge from '../components/GoogleReviewBadge';
@@ -7,14 +8,16 @@ import TheForkWidget from '../components/TheForkWidget';
 import { useLanguage } from '../context/LanguageContext';
 
 const Home = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <>
-      <Helmet>
-        <title>{language === 'fr' ? 'Makda Restaurant - Cuisine Éthiopienne Authentique à Genève' : 'Makda Restaurant - Authentic Ethiopian Cuisine in Geneva'}</title>
-        <meta name="description" content={language === 'fr' ? 'Découvrez la cuisine éthiopienne authentique à Bernex, Genève. Un voyage culinaire au cœur de l\'Afrique avec service traiteur pour tous vos événements.' : 'Discover authentic Ethiopian cuisine in Bernex, Geneva. A culinary journey to the heart of Africa with catering service for all your events.'} />
-      </Helmet>
+      <Seo
+        path="/"
+        title="Makda – Restaurant éthiopien et érythréen à Bernex, Genève"
+        description="Injera maison au teff, plats mijotés, options végétariennes, vegan et sans gluten. Restaurant éthiopien et érythréen à Bernex, Genève. Réservez votre table."
+        jsonLd={restaurantJsonLd}
+      />
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -36,16 +39,16 @@ const Home = () => {
           transition={{ duration: 0.8 }}
           className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto"
         >
-          <p className="text-sm md:text-base mb-4 uppercase tracking-widest text-accent">
-            {language === 'fr' ? 'Restaurant Éthiopien & Érythréen' : 'Ethiopian & Eritrean Restaurant'}
-          </p>
-          <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight text-white" style={{ fontWeight: 100 }}>
+          <h1 className="text-sm md:text-base mb-4 uppercase tracking-widest text-accent">
+            {language === 'fr' ? 'Restaurant éthiopien & érythréen à Bernex, Genève' : 'Ethiopian & Eritrean restaurant in Bernex, Geneva'}
+          </h1>
+          <p className="text-5xl md:text-7xl font-serif mb-6 leading-tight text-white" style={{ fontWeight: 100 }}>
             {language === 'fr' ? (
               <>Un voyage culinaire<br />au cœur de l'Afrique</>
             ) : (
               <>A culinary journey<br />to the heart of Africa</>
             )}
-          </h1>
+          </p>
           <p className="text-lg md:text-xl mb-10 text-text max-w-3xl mx-auto" style={{ fontWeight: 100 }}>
             {language === 'fr'
               ? 'Une expérience authentique à Bernex, où chaque plat raconte une histoire millénaire de partage et de saveurs.'
@@ -203,7 +206,7 @@ const Home = () => {
                   <h3 className="text-2xl font-serif mb-3" style={{ fontWeight: 300 }}>{service.title}</h3>
                   <p className="text-brown-dark/80 leading-relaxed mb-4" style={{ fontWeight: 100 }}>{service.description}</p>
                   <Link
-                    to="/catering"
+                    to="/traiteur"
                     className="inline-flex items-center gap-2 text-gold-muted hover:gap-4 transition-all text-sm"
                     style={{ fontWeight: 300 }}
                   >
@@ -217,7 +220,7 @@ const Home = () => {
 
           <div className="text-center">
             <Link
-              to="/catering"
+              to="/traiteur"
               className="inline-block border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-brown-dark transition-colors text-base"
               style={{ fontWeight: 300 }}
             >

@@ -7,4 +7,8 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  ssr: {
+    // Paquets CommonJS à intégrer dans le rendu serveur (pré-rendu)
+    noExternal: ['react-helmet-async'],
+  },
 });

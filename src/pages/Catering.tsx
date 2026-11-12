@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import Seo from '../components/Seo';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, UtensilsCrossed, Wine, Coffee, Sparkles, ArrowRight } from 'lucide-react';
@@ -15,12 +15,12 @@ const Catering = () => {
     {
       icon: UtensilsCrossed,
       title: 'Buffets Royaux',
-      description: 'Grands plateaux à partager (Gebeta) avec plats fraîche et une variété de wats mijotés.',
+      description: 'Grands plateaux à partager (Gebeta) avec injera fraîche et une variété de wats mijotés.',
     },
     {
       icon: Wine,
       title: 'Cocktails & Finger Food',
-      description: 'Une approche moderne avec des bouchées fines et mets portées pour vos événements debout.',
+      description: 'Une approche moderne avec des bouchées fines, faciles à déguster lors de vos événements debout.',
     },
     {
       icon: Coffee,
@@ -36,15 +36,18 @@ const Catering = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Service Traiteur - Makda Restaurant</title>
-        <meta name="description" content="Service traiteur éthiopien pour mariages, événements d'entreprise et fêtes privées. Buffets royaux, cérémonie du café et plus encore." />
-      </Helmet>
+      <Seo
+        path="/traiteur"
+        title="Traiteur éthiopien à Genève – mariages, entreprises | Makda"
+        description="Traiteur éthiopien et érythréen à Genève : buffets à partager, finger food, cérémonie du café. Mariages, événements d'entreprise et fêtes privées."
+      />
 
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/design_sans_titre_(7).png"
+            src="/source/traiteur-buffet.webp"
+            srcSet="/source/traiteur-buffet-960.webp 960w, /source/traiteur-buffet.webp 1920w"
+            sizes="100vw"
             alt="Service traiteur"
             className="w-full h-full object-cover"
             fetchPriority="high"
@@ -57,7 +60,7 @@ const Catering = () => {
           transition={{ duration: 0.6 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>Service Traiteur</h1>
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>Traiteur éthiopien à Genève</h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto" style={{ fontWeight: 100 }}>
             Apportez la magie de Makda à vos événements. Une expérience culinaire inoubliable pour vos invités.
           </p>
@@ -114,13 +117,13 @@ const Catering = () => {
               className="grid grid-cols-2 gap-4 md:gap-6"
             >
               <img
-                src="/design_sans_titre_(10).png"
+                src="/source/traiteur-plateau.webp"
                 alt="Buffet éthiopien"
                 loading="lazy"
                 className="w-full h-64 md:h-[26rem] object-cover rounded-2xl shadow-2xl"
               />
               <img
-                src="/design_sans_titre_(9).png"
+                src="/source/traiteur-evenement.webp"
                 alt="Événement"
                 loading="lazy"
                 className="w-full h-64 md:h-[26rem] object-cover rounded-2xl shadow-2xl mt-10 md:mt-16"
