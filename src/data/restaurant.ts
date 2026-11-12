@@ -23,13 +23,13 @@ export const restaurant = {
   theforkUrl: 'https://widget.thefork.com/c210f176-61da-4d21-acdb-fc90eeae5a6c',
 };
 
-// Buffet à volonté (source : affiche Instagram, nov. 2026)
+// Buffet à volonté (sources : carte imprimée et affiche Instagram)
 export const buffet = {
   title: 'Buffet à volonté le premier dimanche du mois',
   when: 'Chaque 1er dimanche du mois',
   hours: 'de 12h00 à 17h00',
   price: '30 CHF par personne',
-  includes: 'Café traditionnel et sirops à discrétion inclus. Réservation conseillée.',
+  includes: 'Boissons chaudes et sirops à discrétion inclus. Réservation conseillée.',
 };
 
 // Services et équipements (confirmés par Ezana le 12.11.2026)
@@ -47,18 +47,18 @@ export const hours = {
   display: [
     { day: 'Lundi', hours: 'Fermé' },
     { day: 'Mardi – Samedi', hours: '11h30 – 14h00 · 18h00 – 22h30' },
-    { day: 'Dimanche', hours: '12h00 – 16h30' },
+    { day: 'Dimanche', hours: '12h00 – 17h00' },
   ],
   displayEn: [
     { day: 'Monday', hours: 'Closed' },
     { day: 'Tuesday – Saturday', hours: '11:30am – 2pm · 6pm – 10:30pm' },
-    { day: 'Sunday', hours: '12pm – 4:30pm' },
+    { day: 'Sunday', hours: '12pm – 5pm' },
   ],
   // Pour Google (schema.org)
   schema: [
     { days: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '11:30', closes: '14:00' },
     { days: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '18:00', closes: '22:30' },
-    { days: ['Sunday'], opens: '12:00', closes: '16:30' },
+    { days: ['Sunday'], opens: '12:00', closes: '17:00' },
   ],
 };
 

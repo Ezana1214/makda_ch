@@ -1,150 +1,146 @@
-import { useState } from 'react';
-import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Download, Phone, CalendarCheck } from 'lucide-react';
+import Seo from '../components/Seo';
 import BuffetBanner from '../components/BuffetBanner';
+import { restaurant, SITE_URL } from '../data/restaurant';
+import {
+  dishSections,
+  servedWith,
+  menuMakda,
+  drinkGroups,
+  dessert,
+  allergenInfo,
+  allergenLabels,
+  stories,
+  type Dish,
+} from '../data/menu';
+
+const RED = '#A83D2E';
+const BROWN = '#401400';
+const CREAM = '#FFF8EF';
+
+const nav = [
+  { id: 'entrees', label: 'Entrées' },
+  { id: 'viandes', label: 'Plats carnés' },
+  { id: 'vegetariens', label: 'Végétariens' },
+  { id: 'menu-makda', label: 'Menu Makda' },
+  { id: 'boissons', label: 'Boissons' },
+  { id: 'dessert', label: 'Dessert' },
+  { id: 'allergenes', label: 'Allergènes' },
+];
+
+const Stripe = () => (
+  <div className="flex flex-col gap-[3px] w-24 mx-auto my-5" aria-hidden="true">
+    <span className="h-[3px] rounded-full" style={{ backgroundColor: '#3E8E3E' }} />
+    <span className="h-[3px] rounded-full" style={{ backgroundColor: '#E8B931' }} />
+    <span className="h-[3px] rounded-full" style={{ backgroundColor: '#C8372D' }} />
+  </div>
+);
+
+const Tag = ({ children, title }: { children: React.ReactNode; title: string }) => (
+  <span
+    title={title}
+    className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wide"
+    style={{ backgroundColor: '#F3E3CF', color: BROWN }}
+  >
+    {children}
+  </span>
+);
+
+const SectionTitle = ({ children, id }: { children: React.ReactNode; id?: string }) => (
+  <div className="text-center mb-10">
+    <h2 id={id} className="text-4xl md:text-5xl font-serif scroll-mt-48" style={{ color: BROWN, fontWeight: 300 }}>
+      {children}
+    </h2>
+    <Stripe />
+  </div>
+);
+
+const DishCard = ({ dish }: { dish: Dish }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: '-40px' }}
+    transition={{ duration: 0.4 }}
+    className="flex gap-4 md:gap-5 bg-white rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-md transition-shadow"
+  >
+    {dish.image && (
+      <img
+        src={dish.image}
+        alt={`${dish.name} – plat du restaurant Makda`}
+        loading="lazy"
+        width={144}
+        height={144}
+        className="w-24 h-24 md:w-36 md:h-36 rounded-xl object-cover flex-shrink-0"
+      />
+    )}
+    <div className="flex-1 min-w-0">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3
+          className="text-xl md:text-2xl uppercase tracking-wide leading-tight"
+          style={{ fontFamily: 'Barlow Condensed, sans-serif', fontWeight: 700, color: RED }}
+        >
+          {dish.name}
+          {dish.detail && (
+            <span className="ml-2 text-sm normal-case tracking-normal font-medium" style={{ color: '#7A5852' }}>
+              ({dish.detail})
+            </span>
+          )}
+        </h3>
+        <span className="whitespace-nowrap font-semibold" style={{ color: RED }}>
+          {dish.price} CHF
+        </span>
+      </div>
+      <p className="mt-2 text-sm md:text-[15px] leading-relaxed" style={{ color: '#5C3B33', fontWeight: 400 }}>
+        {dish.description}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {dish.vegan && <Tag title="Végane">VG</Tag>}
+        {dish.vegetarian && !dish.vegan && <Tag title="Végétarien">V</Tag>}
+        {dish.glutenFree && <Tag title="Sans gluten (injera 100 % teff)">SG</Tag>}
+        {dish.halal && <Tag title="Viande certifiée halal">Halal</Tag>}
+        {dish.allergens?.map((a) => (
+          <span key={a} className="text-[11px] px-2 py-0.5 rounded-full border" style={{ borderColor: '#E3CBB0', color: '#7A5852' }}>
+            {allergenLabels[a]}
+          </span>
+        ))}
+      </div>
+    </div>
+  </motion.article>
+);
+
+const menuJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Menu',
+  name: 'Carte du restaurant Makda',
+  url: `${SITE_URL}/menu`,
+  inLanguage: 'fr',
+  hasMenuSection: dishSections.map((s) => ({
+    '@type': 'MenuSection',
+    name: s.title,
+    hasMenuItem: s.dishes.map((d) => ({
+      '@type': 'MenuItem',
+      name: d.name,
+      description: d.description,
+      offers: { '@type': 'Offer', price: d.price, priceCurrency: 'CHF' },
+      suitableForDiet: [
+        d.vegan ? 'https://schema.org/VeganDiet' : null,
+        d.vegetarian ? 'https://schema.org/VegetarianDiet' : null,
+        d.glutenFree ? 'https://schema.org/GlutenFreeDiet' : null,
+        d.halal ? 'https://schema.org/HalalDiet' : null,
+      ].filter(Boolean),
+    })),
+  })),
+};
 
 const Menu = () => {
-  const [activeTab, setActiveTab] = useState('entrees');
-
-  const tabs = [
-    { id: 'entrees', label: 'Entrées' },
-    { id: 'carnes', label: 'Plats Carnés*' },
-    { id: 'vegetariens', label: 'Plats Végétariens' },
-    { id: 'desserts', label: 'Desserts' },
-    { id: 'vins', label: 'Vins' },
-    { id: 'boissons', label: 'Boissons' },
-  ];
-
-  const menuItems = {
-    entrees: [
-      {
-        name: 'SAMBUSA VÉGÉTARIEN (3 PIÈCES)',
-        description: 'TRIANGLE DE PÂTE FINEMENT CROUSTILLANTE, FARCIE DE LÉGUMES ÉPICÉS, RELEVÉE D\'UNE POINTE DE CUMIN ET DE CORIANDRE, ACCOMPAGNÉ DE NOTRE AWAZÉ — UNE SAUCE TRADITIONNELLE À BASE DE PIMENT, D\'AIL ET D\'ÉPICES FERMENTÉES',
-        price: '6 CHF',
-        image: '/source/menu-sambusa.webp',
-      },
-    ],
-    carnes: [
-      {
-        name: 'KITFO (BŒUF)',
-        description: 'VERSION ÉTHIOPIENNE DU STEAK TARTARE : VIANDE DE BŒUF HACHÉE MÉLANGÉE À DU KIBBEH (BEURRE ÉPICÉ), DU MITMITA (PIMENTS EN POUDRE)',
-        price: '28 CHF',
-        image: '/source/menu-kitfo.webp',
-      },
-      {
-        name: 'ZIGNI (BŒUF)',
-        description: 'RAGOÛT DE VIANDE ASSAISONNÉ AUX PIMENTS, OIGNONS ET AIL',
-        price: '22 CHF',
-        image: '/source/menu-zigni.webp',
-      },
-      {
-        name: 'TIBS (BŒUF OU AGNEAU)',
-        description: 'TENDRES CUBES DE VIANDE MARINÉS DANS NOTRE SAUCE SIGNATURE PUIS SAUTÉS À LA POÊLE (AVEC OIGNON ROUGE, PIMENTS, AIL FRAIS ET TOMATES)',
-        price: '26 CHF',
-        image: '/source/menu-tibs.webp',
-      },
-      {
-        name: 'DORO WET (POULET)',
-        description: 'CUISSE DE POULET (MIJOTÉE AVEC OIGNON, AIL, BERBERÉ) FINIE AVEC DU KIBBEH (BEURRE ÉPICÉ) AVEC UN ŒUF DUR ET DE L\'AYIB (FROMAGE FRAIS)',
-        price: '24 CHF',
-        image: '/source/menu-doro-wet.webp',
-      },
-      {
-        name: 'DORO ALECHA (POULET)',
-        description: 'CUISSES DE POULET (MIJOTÉES AVEC OIGNON, AIL) ET UNE SAUCE DOUCE AU CURCUMA',
-        price: '24 CHF',
-        image: '/source/menu-doro-alecha.webp',
-      },
-    ],
-    vegetariens: [
-      {
-        name: 'MISIR WAT',
-        description: 'LENTILLES ROUGES DANS LA SAUCE BERBERÉ (AVEC AIL FRAIS ET OIGNON)',
-        price: '20 CHF',
-        image: '/source/menu-misir-wot-large.webp',
-      },
-      {
-        name: 'SHIRO',
-        description: 'POIS CASSÉS MOULUS RÔTIS AVEC DE L\'OIGNON, DE L\'AIL FRAIS, DES TOMATES',
-        price: '20 CHF',
-        image: '/source/menu-shiro.webp',
-      },
-    ],
-    desserts: [
-      {
-        name: 'CRÈMES GLACÉES',
-        description: 'DES GLACES ARTISANALES, FABRIQUÉES À BERNEX AVEC DES INGRÉDIENTS NATURELS ET UN SAVOIR-FAIRE LOCAL IRRÉPROCHABLE. SIMPLES, PURES ET INCROYABLEMENT SAVOUREUSES (CARAMEL BEURRE SALÉ, FIOR DI LATTE, CHOCOLAT)',
-        price: '6 CHF',
-        image: '/source/menu-pauseglace.webp',
-      },
-    ],
-    vins: [
-      {
-        name: 'DIOLINOIR',
-        description: 'ROBE SOMBRE, ARÔMES ÉPICÉS ET FRUITÉS, TOUCHE SAUVAGE (VINS GUYOT)',
-        price: '6.5 CHF / 42 CHF',
-        image: '/source/menu-diolinoir.webp',
-      },
-      {
-        name: 'TROIS HELVÈTES',
-        description: 'TRÈS FRUITÉ ET ÉPICÉ, AVEC DE BEAUX TANINS SOYEUX, BELLE STRUCTURE (VINS GUYOT)',
-        price: '6 CHF / 36 CHF',
-        image: '/source/menu-trois-helvetes-1.webp',
-      },
-      {
-        name: 'PINOT NOIR',
-        description: 'NOTES DE VIOLETTE, FRUITS ROUGES ET SOUS-BOIS (DOMAINE DE BEAUVENT)',
-        price: '6 CHF / 38 CHF',
-        image: '/source/menu-pinotnoir.webp',
-      },
-      {
-        name: 'GAMAY',
-        description: 'FRUITÉ, LÉGER, BIEN ÉQUILIBRÉ AVEC UNE TOUCHE VÉGÉTALE (DOMAINE DE BEAUVENT)',
-        price: '5.5 CHF',
-        image: 'https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=400',
-      },
-      {
-        name: 'CHASSELAS',
-        description: 'SEC, FLORAL ET FRAIS, TOUCHE DE LEVURE EN FINALE (DOMAINE DE BEAUVENT)',
-        price: '5 CHF / 32 CHF',
-        image: '/source/menu-chasselas.webp',
-      },
-      {
-        name: 'ROSÉ DE GAMAY',
-        description: 'FRAIS, FRUITÉ ET ROND, AVEC UNE BELLE PERSISTANCE (DOMAINE DE BEAUVENT)',
-        price: '5 CHF',
-        image: '/source/menu-rosedegamay.webp',
-      },
-    ],
-    boissons: [
-      {
-        name: 'TEJ',
-        description: 'HYDROMEL TRADITIONNEL AU MIEL FERMENTÉ, DOUX ET SUBTILEMENT FLORAL',
-        price: '5 CHF',
-        image: '/source/menu-tej.webp',
-      },
-      {
-        name: 'TELLA',
-        description: 'BIÈRE TRADITIONNELLE ARTISANALE, LÉGÈRE ET DOUCE, BRASSÉE AVEC DES CÉRÉALES ET DES ÉPICES. UNE BOISSON CONVIVIALE AU GOÛT SUBTIL ET AUTHENTIQUE',
-        price: '5 CHF',
-        image: '/source/menu-tella.webp',
-      },
-      {
-        name: 'BIÈRE PÈRE JAKOB',
-        description: 'BIÈRE ARTISANALE DE LA BRASSERIE PÈRE JAKOB À SORAL, BLONDE LÉGÈRE AUX ARÔMES DE CÉRÉALES TOASTÉES ET D\'AGRUMES, AU CORPS ÉQUILIBRÉ',
-        price: '6 CHF',
-        image: '/source/menu-bierejakob.webp',
-      },
-    ],
-  };
-
   return (
     <>
       <Seo
         path="/menu"
         title="Menu éthiopien : injera, kitfo, tibs, plats végé – Makda"
-        description="La carte de Makda à Bernex : sambusa, kitfo, tibs, doro wat, lentilles et shiro végétariens, tej et vins genevois. Injera sans gluten au teff."
+        description="La carte de Makda à Bernex : sambusa, kitfo, tibs, doro wat, misir et shiro véganes, Menu Makda à partager, tej maison et vins genevois. Injera 100 % teff sans gluten."
+        jsonLd={menuJsonLd}
       />
 
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
@@ -154,7 +150,7 @@ const Menu = () => {
             fetchPriority="high"
             srcSet="/source/assortiment-plats-960.webp 960w, /source/assortiment-plats.webp 1920w"
             sizes="100vw"
-            alt="Menu Makda"
+            alt="Assortiment de plats éthiopiens sur injera chez Makda"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/50"></div>
@@ -165,90 +161,218 @@ const Menu = () => {
           transition={{ duration: 0.6 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>Notre Menu</h1>
-          <p className="text-xl" style={{ fontWeight: 100, color: '#ECEDEA' }}>Une exploration des saveurs authentiques, des épices envoûtantes et des<br />traditions culinaires de l'Éthiopie.</p>
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>
+            Notre carte
+          </h1>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ fontWeight: 300, color: '#ECEDEA' }}>
+            Cuisine éthiopienne et érythréenne maison, servie sur injera 100 % teff, à partager.
+          </p>
         </motion.div>
       </section>
 
-      <BuffetBanner />
+      {/* Navigation dans la carte */}
+      <nav
+        aria-label="Sections de la carte"
+        className="sticky top-[96px] z-40 border-b backdrop-blur"
+        style={{ backgroundColor: 'rgba(255,248,239,0.95)', borderColor: '#EBCDAD' }}
+      >
+        <div className="container mx-auto max-w-6xl px-4 flex gap-2 overflow-x-auto py-3 no-scrollbar">
+          {nav.map((n) => (
+            <a
+              key={n.id}
+              href={`#${n.id}`}
+              className="whitespace-nowrap px-4 py-2 rounded-full text-sm transition-colors hover:bg-[#5A2B20] hover:text-white"
+              style={{ color: '#5A2B20', border: '1px solid #E3CBB0', fontWeight: 500 }}
+            >
+              {n.label}
+            </a>
+          ))}
+        </div>
+      </nav>
 
-      <section className="py-16 px-4" style={{ backgroundColor: '#EBCDAD' }}>
-        <div className="container mx-auto max-w-7xl">
-          <div className="inline-flex items-center justify-center rounded-full p-1.5 mb-12 mx-auto block" style={{ backgroundColor: '#FDFBF7' }}>
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-8 py-3 rounded-full font-light transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? 'bg-[#5A2B20] text-white shadow-md'
-                    : 'bg-transparent text-[#5A2B20] hover:bg-black/5'
-                }`}
-              >
-                {tab.label}
-              </button>
+      <div style={{ backgroundColor: CREAM }}>
+        {/* Légende */}
+        <div className="container mx-auto max-w-6xl px-4 pt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm" style={{ color: '#5C3B33' }}>
+          <span className="flex items-center gap-2"><Tag title="Végane">VG</Tag> Végane</span>
+          <span className="flex items-center gap-2"><Tag title="Végétarien">V</Tag> Végétarien</span>
+          <span className="flex items-center gap-2"><Tag title="Sans gluten">SG</Tag> Sans gluten (injera 100 % teff)</span>
+          <span className="flex items-center gap-2"><Tag title="Halal">Halal</Tag> Viande certifiée halal</span>
+        </div>
+
+        {dishSections.map((section) => (
+          <section key={section.id} className="container mx-auto max-w-6xl px-4 pt-16" aria-labelledby={section.id}>
+            <SectionTitle id={section.id}>{section.title}</SectionTitle>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              {section.dishes.map((dish) => (
+                <DishCard key={dish.id} dish={dish} />
+              ))}
+            </div>
+            {section.note && (
+              <p className="text-center text-sm mt-5 italic" style={{ color: '#7A5852' }}>
+                {section.note}
+              </p>
+            )}
+          </section>
+        ))}
+
+        <div className="container mx-auto max-w-3xl px-4 pt-10">
+          <p className="text-center rounded-2xl px-6 py-4" style={{ backgroundColor: '#F3E3CF', color: BROWN, fontWeight: 500 }}>
+            {servedWith}
+          </p>
+        </div>
+
+        {/* Menu Makda */}
+        <section className="container mx-auto max-w-4xl px-4 pt-20" aria-labelledby="menu-makda">
+          <div className="rounded-3xl px-6 py-10 md:px-12 md:py-12 text-white" style={{ backgroundColor: BROWN }}>
+            <h2 id="menu-makda" className="text-4xl md:text-5xl font-serif text-center scroll-mt-48" style={{ fontWeight: 300, color: '#FFFFFF' }}>
+              {menuMakda.title}
+            </h2>
+            <Stripe />
+            <p className="text-center max-w-2xl mx-auto mb-8 text-white/85 leading-relaxed" style={{ fontWeight: 300 }}>
+              {menuMakda.description}
+            </p>
+            <table className="w-full max-w-xl mx-auto text-center">
+              <caption className="sr-only">Prix du Menu Makda selon le nombre de personnes</caption>
+              <thead>
+                <tr className="text-sm uppercase tracking-wider" style={{ color: '#EBCDAD' }}>
+                  <th className="py-2 font-medium text-left"></th>
+                  <th className="py-2 font-medium">Formule végane</th>
+                  <th className="py-2 font-medium">Formule carnée</th>
+                </tr>
+              </thead>
+              <tbody>
+                {menuMakda.rows.map((r) => (
+                  <tr key={r.people} className="border-t border-white/15">
+                    <th scope="row" className="py-3 text-left font-medium">{r.people}</th>
+                    <td className="py-3 text-lg">{r.vegan} CHF</td>
+                    <td className="py-3 text-lg">{r.meat} CHF</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div className="pt-16">
+          <BuffetBanner />
+        </div>
+
+        {/* Boissons */}
+        <section className="container mx-auto max-w-6xl px-4 pt-20" aria-labelledby="boissons">
+          <SectionTitle id="boissons">Boissons</SectionTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {drinkGroups.map((g) => (
+              <div key={g.title} className="bg-white rounded-2xl p-6 shadow-sm">
+                <div className="flex items-baseline justify-between mb-4 gap-3">
+                  <h3 className="text-2xl font-serif" style={{ color: BROWN, fontWeight: 400 }}>{g.title}</h3>
+                  {g.unit && <span className="text-xs whitespace-nowrap" style={{ color: '#7A5852' }}>{g.unit}</span>}
+                </div>
+                <ul className="space-y-3">
+                  {g.drinks.map((d) => (
+                    <li key={d.name}>
+                      <div className="flex items-baseline gap-2">
+                        <span className="font-semibold uppercase tracking-wide" style={{ fontFamily: 'Barlow Condensed, sans-serif', color: RED, fontSize: '1.05rem' }}>
+                          {d.name}
+                        </span>
+                        <span className="flex-1 border-b border-dotted translate-y-[-4px]" style={{ borderColor: '#D9BFA3' }} aria-hidden="true" />
+                        <span className="whitespace-nowrap text-sm font-semibold" style={{ color: RED }}>{d.price} CHF</span>
+                      </div>
+                      {d.description && (
+                        <p className="text-sm leading-snug mt-0.5" style={{ color: '#5C3B33' }}>{d.description}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
+        </section>
 
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-6 max-w-5xl mx-auto"
-          >
-            {menuItems[activeTab as keyof typeof menuItems].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              >
-                <div className="flex flex-col sm:flex-row items-stretch bg-brown-dark">
-                  <div className="w-full sm:w-80 h-80 flex-shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1 p-6 relative flex flex-col justify-center" style={{ backgroundColor: '#FFFFFF' }}>
-                    <div className="absolute top-4 right-4 px-4 py-2 rounded-full text-sm" style={{ backgroundColor: '#FBF5F5', color: '#A83D2E', fontWeight: 600 }}>
-                      {item.price}
-                    </div>
-                    <h3 className="text-2xl mb-3 pr-24 font-bold uppercase tracking-wide" style={{ fontFamily: 'Barlow Condensed, sans-serif', color: '#d4513e' }}>
-                      {item.name}
-                    </h3>
-                    <p className="leading-relaxed text-sm uppercase" style={{ fontWeight: 100, color: '#7A5852' }}>
-                      {item.description}
-                    </p>
-                  </div>
+        {/* Dessert */}
+        <section className="container mx-auto max-w-3xl px-4 pt-20" aria-labelledby="dessert">
+          <SectionTitle id="dessert">Dessert</SectionTitle>
+          <DishCard dish={{ id: 'glaces', vegetarian: true, allergens: ['lait'], ...dessert }} />
+        </section>
+
+        {/* Allergènes */}
+        <section className="container mx-auto max-w-4xl px-4 pt-20" aria-labelledby="allergenes">
+          <SectionTitle id="allergenes">Allergènes</SectionTitle>
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                { title: 'À la carte et au buffet', rows: allergenInfo.carte },
+                { title: 'Boissons et dessert', rows: allergenInfo.boissons },
+              ].map((block) => (
+                <div key={block.title}>
+                  <h3 className="text-xl font-serif mb-3" style={{ color: BROWN }}>{block.title}</h3>
+                  <dl className="space-y-2 text-sm">
+                    {block.rows.map((r) => (
+                      <div key={r.allergen} className="grid grid-cols-[9rem_1fr] gap-3">
+                        <dt className="font-semibold" style={{ color: RED }}>{r.allergen}</dt>
+                        <dd style={{ color: '#5C3B33' }}>{r.items}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD' }}>
-        <div className="container mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-start gap-4 p-8" style={{ backgroundColor: '#401400', borderRadius: '12px', maxWidth: '70%', margin: '0 auto' }}
-          >
-            <AlertCircle size={32} className="flex-shrink-0 mt-1" style={{ color: '#D9D1CC' }} />
-            <div>
-              <h3 className="text-2xl font-serif mb-4" style={{ fontWeight: 300, color: '#D9D1CC' }}>Allergies & Régimes</h3>
-              <p className="leading-relaxed" style={{ fontWeight: 100, color: '#D9D1CC' }}>
-                Notre cuisine est naturellement riche en options végétariennes et sans gluten. N'hésitez pas à informer notre personnel de vos allergies ou intolérances.
-              </p>
+              ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
+            <p className="mt-6 text-sm" style={{ color: '#5C3B33' }}>
+              Les autres plats et boissons ne contiennent pas d'allergènes majeurs ajoutés.
+            </p>
+            <div className="mt-6 flex items-start gap-3 rounded-xl p-4" style={{ backgroundColor: '#FBEDE0' }}>
+              <AlertCircle size={22} className="flex-shrink-0 mt-0.5" style={{ color: RED }} />
+              <p className="text-sm leading-relaxed" style={{ color: BROWN }}>{allergenInfo.warning}</p>
+            </div>
+            <a
+              href={allergenInfo.pdf}
+              target="_blank"
+              rel="noopener"
+              className="mt-6 inline-flex items-center gap-2 text-sm underline"
+              style={{ color: '#5A2B20', fontWeight: 600 }}
+            >
+              <Download size={16} /> Télécharger la fiche allergènes (PDF)
+            </a>
+          </div>
+        </section>
+
+        {/* Traditions */}
+        <section className="container mx-auto max-w-6xl px-4 pt-20" aria-labelledby="traditions">
+          <SectionTitle id="traditions">Le saviez-vous ?</SectionTitle>
+          <div className="grid md:grid-cols-3 gap-6">
+            {stories.map((s) => (
+              <div key={s.title} className="rounded-2xl p-6" style={{ backgroundColor: '#F3E3CF' }}>
+                <h3 className="text-2xl font-serif mb-3" style={{ color: BROWN }}>{s.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#5C3B33' }}>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Appel à l'action */}
+        <section className="container mx-auto max-w-4xl px-4 py-20 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6" style={{ color: BROWN, fontWeight: 300 }}>
+            Envie de goûter ?
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={restaurant.theforkUrl}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white"
+              style={{ backgroundColor: '#5A2B20' }}
+            >
+              <CalendarCheck size={18} /> Réserver une table
+            </a>
+            <a
+              href={`tel:${restaurant.phone}`}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border"
+              style={{ borderColor: '#5A2B20', color: '#5A2B20' }}
+            >
+              <Phone size={18} /> {restaurant.phoneDisplay}
+            </a>
+          </div>
+        </section>
+      </div>
     </>
   );
 };

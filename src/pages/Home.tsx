@@ -100,13 +100,15 @@ const Home = () => {
             >
               <div className="grid grid-cols-2 gap-4">
                 <img
-                  src="https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Intérieur du restaurant"
+                  src="/source/salle-makda-tables-800.webp"
+                  loading="lazy"
+                  alt="Salle du restaurant Makda à Bernex, tables dressées"
                   className="w-full h-80 object-cover rounded-2xl shadow-xl"
                 />
                 <img
-                  src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Ambiance chaleureuse"
+                  src="/source/salle-makda-clients-800.webp"
+                  loading="lazy"
+                  alt="Clients attablés dans la salle de Makda"
                   className="w-full h-80 object-cover rounded-2xl shadow-xl mt-12"
                 />
               </div>
@@ -173,21 +175,24 @@ const Home = () => {
                 description: language === 'fr'
                   ? 'Faites de votre jour spécial un véritable festin pour vos proches avec nos menus élégants.'
                   : 'Make your special day a true feast for your loved ones with our elegant menus.',
-                image: 'https://images.pexels.com/photos/1702373/pexels-photo-1702373.jpeg?auto=compress&cs=tinysrgb&w=800',
+                image: '/source/buffet-poulet-makda-800.webp',
+                alt: 'Plats de fête préparés par Makda pour un événement',
               },
               {
                 title: language === 'fr' ? 'Événements d\'entreprise' : 'Corporate Events',
                 description: language === 'fr'
                   ? 'Séminaires, cocktails, ou dîners de gala, une touche d\'excellence pour vos pro.'
                   : 'Seminars, cocktails, or gala dinners, a touch of excellence for your professionals.',
-                image: 'https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=800',
+                image: '/source/buffet-salle-makda-800.webp',
+                alt: 'Buffet traiteur Makda installé pour un événement',
               },
               {
                 title: language === 'fr' ? 'Fêtes privées' : 'Private Parties',
                 description: language === 'fr'
                   ? 'Anniversaires ou soirées entre amis, nous prenons soin de tout pour vous.'
                   : 'Birthdays or evenings with friends, we take care of everything for you.',
-                image: 'https://images.pexels.com/photos/3171815/pexels-photo-3171815.jpeg?auto=compress&cs=tinysrgb&w=800',
+                image: '/source/convives-makda-800.webp',
+                alt: 'Famille et amis réunis pour un repas chez Makda',
               },
             ].map((service, index) => (
               <motion.div
@@ -201,7 +206,8 @@ const Home = () => {
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={service.image}
-                    alt={service.title}
+                    alt={service.alt}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
