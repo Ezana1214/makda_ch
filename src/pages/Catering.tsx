@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, UtensilsCrossed, Wine, Coffee, Sparkles, ArrowRight } from 'lucide-react';
 
 const Catering = () => {
   const benefits = [
@@ -12,22 +13,22 @@ const Catering = () => {
 
   const features = [
     {
-      icon: '🍽️',
+      icon: UtensilsCrossed,
       title: 'Buffets Royaux',
       description: 'Grands plateaux à partager (Gebeta) avec plats fraîche et une variété de wats mijotés.',
     },
     {
-      icon: '🥂',
+      icon: Wine,
       title: 'Cocktails & Finger Food',
       description: 'Une approche moderne avec des bouchées fines et mets portées pour vos événements debout.',
     },
     {
-      icon: '☕',
+      icon: Coffee,
       title: 'Cérémonie du Café',
       description: 'L\'authentique rituel du Buna avec torréfaction sur place pour émerveiller vos invités.',
     },
     {
-      icon: '✨',
+      icon: Sparkles,
       title: 'Décoration & Ambiance',
       description: 'Service en tenue traditionnelle et mise en place d\'une atmosphère immersive.',
     },
@@ -46,6 +47,7 @@ const Catering = () => {
             src="/design_sans_titre_(7).png"
             alt="Service traiteur"
             className="w-full h-full object-cover"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
@@ -56,47 +58,52 @@ const Catering = () => {
           className="relative z-10 text-center text-white px-4"
         >
           <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>Service Traiteur</h1>
-          <p className="text-xl md:text-2xl text-white/90" style={{ fontWeight: 100 }}>
-            Apportez la magie de Makda à vos événements. Une expérience culinaire<br />inoubliable pour vos invités.
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto" style={{ fontWeight: 100 }}>
+            Apportez la magie de Makda à vos événements. Une expérience culinaire inoubliable pour vos invités.
           </p>
         </motion.div>
       </section>
 
-      <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="pt-16 md:pt-24 pb-12 md:pb-16 px-4" style={{ backgroundColor: '#EBCDAD' }}>
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-serif mb-8" style={{ fontWeight: 300, color: '#401400' }}>
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 leading-tight" style={{ fontWeight: 300, color: '#401400' }}>
                 Pour vos moments d'exception
               </h2>
-              <p className="text-lg leading-relaxed mb-8" style={{ fontWeight: 100, color: '#401400' }}>
+              <p className="text-lg leading-relaxed mb-10" style={{ fontWeight: 100, color: '#401400' }}>
                 Que ce soit pour un mariage fastueux, un événement d'entreprise prestigieux ou une fête intime entre amis, notre service traiteur s'adapte à vos besoins. Nous proposons bien plus qu'un repas : une véritable immersion culturelle.
               </p>
-              <div className="space-y-4 mb-8">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5 mb-10">
                 {benefits.map((benefit, index) => (
-                  <motion.div
+                  <motion.li
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center gap-3"
+                    className="flex items-start gap-3"
                   >
-                    <div className="rounded-full flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD', border: '2px solid #8B6F47', width: '44px', height: '44px' }}>
-                      <Check size={20} className="text-brown-dark" />
-                    </div>
-                    <span style={{ fontWeight: 100, color: '#401400' }}>{benefit}</span>
-                  </motion.div>
+                    <span className="rounded-full flex-shrink-0 flex items-center justify-center w-9 h-9" style={{ backgroundColor: '#FFF3E6', border: '1.5px solid #8B6F47' }}>
+                      <Check size={18} className="text-brown-dark" />
+                    </span>
+                    <span className="pt-1.5 leading-snug" style={{ fontWeight: 300, color: '#401400' }}>{benefit}</span>
+                  </motion.li>
                 ))}
-              </div>
-              <button className="text-white px-8 py-4 rounded-full transition-colors text-base" style={{ backgroundColor: '#5A2B20', fontWeight: 300 }}>
+              </ul>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-base"
+                style={{ backgroundColor: '#5A2B20', fontWeight: 300 }}
+              >
                 Demander un devis
-              </button>
+                <ArrowRight size={18} />
+              </Link>
             </motion.div>
 
             <motion.div
@@ -104,31 +111,33 @@ const Catering = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="grid grid-cols-2 gap-4 items-center"
+              className="grid grid-cols-2 gap-4 md:gap-6"
             >
               <img
                 src="/design_sans_titre_(10).png"
                 alt="Buffet éthiopien"
-                className="w-full h-64 object-cover rounded-2xl shadow-lg"
+                loading="lazy"
+                className="w-full h-64 md:h-[26rem] object-cover rounded-2xl shadow-2xl"
               />
               <img
                 src="/design_sans_titre_(9).png"
                 alt="Événement"
-                className="w-full h-64 object-cover rounded-2xl shadow-lg"
+                loading="lazy"
+                className="w-full h-64 md:h-[26rem] object-cover rounded-2xl shadow-2xl mt-10 md:mt-16"
               />
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
-        <div className="container mx-auto max-w-7xl" style={{ backgroundColor: '#401400', borderRadius: '24px', padding: '40px' }}>
+      <section className="pt-8 md:pt-12 pb-16 md:pb-24 px-4" style={{ backgroundColor: '#EBCDAD' }}>
+        <div className="container mx-auto max-w-6xl rounded-3xl px-6 py-12 md:px-12 md:py-16" style={{ backgroundColor: '#401400' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-serif mb-6 text-white" style={{ fontWeight: 300 }}>
               L'Expérience Traiteur Makda
@@ -138,27 +147,37 @@ const Catering = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-6xl mb-6">{feature.icon}</div>
-                <h3 className="text-xl font-serif mb-4 text-white" style={{ fontWeight: 300 }}>{feature.title}</h3>
-                <p className="leading-relaxed text-sm text-white/80" style={{ fontWeight: 100 }}>{feature.description}</p>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="text-center rounded-2xl p-6 md:p-7 border border-white/10 bg-white/5"
+                >
+                  <span className="bg-gold-light rounded-full w-14 h-14 mx-auto mb-5 flex items-center justify-center">
+                    <Icon size={26} className="text-brown-dark" />
+                  </span>
+                  <h3 className="text-xl font-serif mb-3 text-white" style={{ fontWeight: 300 }}>{feature.title}</h3>
+                  <p className="leading-relaxed text-sm text-white/80" style={{ fontWeight: 100 }}>{feature.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
 
           <div className="text-center">
-            <button className="px-8 py-4 rounded-full transition-colors text-base" style={{ backgroundColor: '#EBCDAD', color: '#401400', fontWeight: 300 }}>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-base"
+              style={{ backgroundColor: '#EBCDAD', color: '#401400', fontWeight: 300 }}
+            >
               Planifier mon événement
-            </button>
+              <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
       </section>
