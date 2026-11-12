@@ -7,7 +7,7 @@ export const restaurant = {
   name: 'Makda',
   legalName: 'MAKDA Sàrl',
   // Numéro IDE/UID au registre du commerce (format CHE-123.456.789) — à compléter
-  uid: '',
+  uid: 'CHE-449.556.743',
   street: 'Rue de Bernex 224',
   postalCode: '1233',
   city: 'Bernex',
