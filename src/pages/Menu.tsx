@@ -165,7 +165,7 @@ const Menu = () => {
         </motion.div>
       </section>
 
-      <section className="py-16 px-4" style={{ backgroundColor: '#FBD8B1' }}>
+      <section className="py-16 px-4" style={{ backgroundColor: '#EBCDAD' }}>
         <div className="container mx-auto max-w-7xl">
           <div className="inline-flex items-center justify-center rounded-full p-1.5 mb-12 mx-auto block" style={{ backgroundColor: '#FDFBF7' }}>
             {tabs.map((tab) => (

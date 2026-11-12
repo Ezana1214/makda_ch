@@ -156,7 +156,7 @@ const Catering = () => {
           </div>
 
           <div className="text-center">
-            <button className="px-8 py-4 rounded-full transition-colors text-base" style={{ backgroundColor: '#FBD8B1', color: '#401400', fontWeight: 300 }}>
+            <button className="px-8 py-4 rounded-full transition-colors text-base" style={{ backgroundColor: '#EBCDAD', color: '#401400', fontWeight: 300 }}>
               Planifier mon événement
             </button>
           </div>

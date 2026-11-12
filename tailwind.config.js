@@ -11,7 +11,7 @@ export default {
         },
         gold: {
           muted: '#C9A961',
-          light: '#FBD8B1',
+          light: '#EBCDAD',
         },
         accent: '#E5C7A4',
         text: '#E7E7E7',
