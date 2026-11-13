@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, to, L } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,11 +20,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { to: '/', label: t('nav.home') },
-    { to: '/menu', label: t('nav.menu') },
-    { to: '/traiteur', label: t('nav.catering') },
-    { to: '/histoire', label: t('nav.history') },
-    { to: '/contact', label: t('nav.contact') },
+    { to: to('home'), label: t('nav.home') },
+    { to: to('menu'), label: t('nav.menu') },
+    { to: to('catering'), label: t('nav.catering') },
+    { to: to('history'), label: t('nav.history') },
+    { to: to('contact'), label: t('nav.contact') },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -37,8 +37,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center">
-            <img src="/makda-logo.webp" alt="Makda – retour à l'accueil" width="139" height="64" className="h-16 w-auto" />
+          <Link to={to('home')} className="flex items-center">
+            <img src="/makda-logo.webp" alt={L('Makda – retour à l\'accueil', 'Makda – back to home')} width="139" height="64" className="h-16 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -62,7 +62,7 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-label={isMobileMenuOpen ? L('Fermer le menu', 'Close menu') : L('Ouvrir le menu', 'Open menu')}
             aria-expanded={isMobileMenuOpen}
             className="lg:hidden text-brown-dark"
           >

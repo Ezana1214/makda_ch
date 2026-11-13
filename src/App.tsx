@@ -12,6 +12,8 @@ import Privacy from './pages/Privacy';
 import LegalNotice from './pages/LegalNotice';
 import NotFound from './pages/NotFound';
 import MobileActionBar from './components/MobileActionBar';
+import LandingPage from './components/LandingPage';
+import { routes } from './i18n';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -29,12 +31,17 @@ function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/traiteur" element={<Catering />} />
+          {(['fr', 'en'] as const).map((l) => [
+            <Route key={`home-${l}`} path={routes.home[l]} element={<Home />} />,
+            <Route key={`menu-${l}`} path={routes.menu[l]} element={<Menu />} />,
+            <Route key={`catering-${l}`} path={routes.catering[l]} element={<Catering />} />,
+            <Route key={`history-${l}`} path={routes.history[l]} element={<History />} />,
+            <Route key={`contact-${l}`} path={routes.contact[l]} element={<Contact />} />,
+            ...(['glutenFree', 'buffet', 'privateHire', 'access', 'weddings', 'corporate', 'parties'] as const).map((id) => (
+              <Route key={`${id}-${l}`} path={routes[id][l]} element={<LandingPage key={`${id}-${l}`} id={id} />} />
+            )),
+          ])}
           <Route path="/catering" element={<Navigate to="/traiteur" replace />} />
-          <Route path="/histoire" element={<History />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/confidentialite" element={<Privacy />} />
           <Route path="/mentions-legales" element={<LegalNotice />} />
           <Route path="*" element={<NotFound />} />
@@ -48,7 +55,7 @@ function App() {
 
 function AppFooter() {
   const location = useLocation();
-  if (location.pathname === '/contact') {
+  if (location.pathname === '/contact' || location.pathname === '/en/contact') {
     return null;
   }
   return <Footer />;

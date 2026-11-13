@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
-import { restaurantJsonLd } from '../data/restaurant';
+import { restaurantJsonLd, restaurantJsonLdEn } from '../data/restaurant';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import GoogleReviewBadge from '../components/GoogleReviewBadge';
@@ -12,15 +12,21 @@ import InfoAccess from '../components/InfoAccess';
 import BookingCTA from '../components/BookingCTA';
 
 const Home = () => {
-  const { language } = useLanguage();
+  const { language, L, to } = useLanguage();
 
   return (
     <>
       <Seo
-        path="/"
-        title="Makda – Restaurant éthiopien et érythréen à Bernex, Genève"
-        description="Restaurant éthiopien et érythréen à Bernex (Genève) : injera sans gluten, plats mijotés, options vegan, buffet à volonté le 1er dimanche du mois. Parking gratuit."
-        jsonLd={restaurantJsonLd}
+        path={to('home')}
+        title={L(
+          'Makda – Restaurant éthiopien et érythréen à Bernex, Genève',
+          'Makda – Ethiopian & Eritrean restaurant in Bernex, Geneva'
+        )}
+        description={L(
+          'Restaurant éthiopien et érythréen à Bernex (Genève) : injera sans gluten, plats mijotés, options vegan, buffet à volonté le 1er dimanche du mois. Parking gratuit.',
+          'Ethiopian and Eritrean restaurant in Bernex, Geneva: gluten-free injera, slow-cooked stews, vegan options and an all-you-can-eat buffet on the first Sunday of the month. Free parking.'
+        )}
+        jsonLd={language === 'en' ? restaurantJsonLdEn : restaurantJsonLd}
       />
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -56,11 +62,11 @@ const Home = () => {
           <p className="text-lg md:text-xl mb-10 text-text max-w-3xl mx-auto" style={{ fontWeight: 400 }}>
             {language === 'fr'
               ? 'Une expérience authentique à Bernex, où chaque plat raconte une histoire millénaire de partage et de saveurs.'
-              : 'An authentic experience in Bernex, where each dish tells a thousand-year-old story of sharing and flavors.'}
+              : 'An authentic experience in Bernex, where every dish tells an age-old story of sharing and flavour.'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Link
-              to="/menu"
+              to={to('menu')}
               className="text-brown-dark px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-base inline-flex items-center justify-center gap-2"
               style={{ backgroundColor: '#D3B695', fontWeight: 300 }}
             >
@@ -105,13 +111,13 @@ const Home = () => {
                 <img
                   src="/source/salle-makda-tables-800.webp"
                   loading="lazy"
-                  alt="Salle du restaurant Makda à Bernex, tables dressées"
+                  alt={L('Salle du restaurant Makda à Bernex, tables dressées', 'Laid tables in the dining room at Makda, Bernex')}
                   className="w-full h-80 object-cover rounded-2xl shadow-xl"
                 />
                 <img
                   src="/source/salle-makda-clients-800.webp"
                   loading="lazy"
-                  alt="Clients attablés dans la salle de Makda"
+                  alt={L('Clients attablés dans la salle de Makda', 'Guests dining at Makda')}
                   className="w-full h-80 object-cover rounded-2xl shadow-xl mt-12"
                 />
               </div>
@@ -137,7 +143,7 @@ const Home = () => {
                   : 'Let yourself be transported by a friendly atmosphere and refined flavors that will awaken your senses. Enjoy a moment of relaxation and sharing around the culinary richness of the Horn of Africa.'}
               </p>
               <Link
-                to="/histoire"
+                to={to('history')}
                 className="inline-flex items-center gap-2 text-lg hover:gap-4 transition-all underline"
                 style={{ color: '#5A2B20', fontWeight: 400 }}
               >
@@ -166,7 +172,7 @@ const Home = () => {
             <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#FFFFFF', fontWeight: 400 }}>
               {language === 'fr' ? 'Nos Services sur Mesure' : 'Our Custom Services'}
             </h2>
-            <p className="text-lg max-w-3xl mx-auto mb-16 font-thin" style={{ color: '#D9D1CC' }}>
+            <p className="text-lg max-w-3xl mx-auto mb-16" style={{ color: '#D9D1CC' }}>
               {language === 'fr'
                 ? 'Au-delà de notre restaurant, nous apportons l\'excellence de Makda à vos événements les plus précieux.'
                 : 'Beyond our restaurant, we bring the excellence of Makda to your most precious events.'}
@@ -181,15 +187,17 @@ const Home = () => {
                   ? 'Faites de votre jour spécial un véritable festin pour vos proches avec nos menus élégants.'
                   : 'Make your special day a true feast for your loved ones with our elegant menus.',
                 image: '/source/buffet-poulet-makda-800.webp',
-                alt: 'Plats de fête préparés par Makda pour un événement',
+                alt: L('Plats de fête préparés par Makda pour un événement', 'Festive dishes prepared by Makda for an event'),
+                link: to('weddings'),
               },
               {
                 title: language === 'fr' ? 'Événements d\'entreprise' : 'Corporate Events',
                 description: language === 'fr'
-                  ? 'Séminaires, cocktails, ou dîners de gala, une touche d\'excellence pour vos pro.'
-                  : 'Seminars, cocktails, or gala dinners, a touch of excellence for your professionals.',
+                  ? 'Séminaires, cocktails ou dîners de gala : une touche d\'excellence pour vos équipes et vos clients.'
+                  : 'Seminars, cocktails or gala dinners: a touch of excellence for your team and clients.',
                 image: '/source/buffet-salle-makda-800.webp',
-                alt: 'Buffet traiteur Makda installé pour un événement',
+                alt: L('Buffet traiteur Makda installé pour un événement', 'Makda catering buffet set up for an event'),
+                link: to('corporate'),
               },
               {
                 title: language === 'fr' ? 'Fêtes privées' : 'Private Parties',
@@ -197,7 +205,8 @@ const Home = () => {
                   ? 'Anniversaires ou soirées entre amis, nous prenons soin de tout pour vous.'
                   : 'Birthdays or evenings with friends, we take care of everything for you.',
                 image: '/source/convives-makda-800.webp',
-                alt: 'Famille et amis réunis pour un repas chez Makda',
+                alt: L('Famille et amis réunis pour un repas chez Makda', 'Family and friends sharing a meal at Makda'),
+                link: to('parties'),
               },
             ].map((service, index) => (
               <motion.div
@@ -220,11 +229,12 @@ const Home = () => {
                   <h3 className="text-2xl font-serif mb-3" style={{ fontWeight: 300 }}>{service.title}</h3>
                   <p className="text-brown-dark/80 leading-relaxed mb-4" style={{ fontWeight: 400 }}>{service.description}</p>
                   <Link
-                    to="/traiteur"
+                    to={service.link}
                     className="inline-flex items-center gap-2 text-gold-muted hover:gap-4 transition-all text-sm"
                     style={{ fontWeight: 300 }}
                   >
                     {language === 'fr' ? 'EN SAVOIR PLUS' : 'LEARN MORE'}
+                    <span className="sr-only"> : {service.title}</span>
                     <ArrowRight size={16} />
                   </Link>
                 </div>
@@ -234,7 +244,7 @@ const Home = () => {
 
           <div className="text-center">
             <Link
-              to="/traiteur"
+              to={to('catering')}
               className="inline-block border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-brown-dark transition-colors text-base"
               style={{ fontWeight: 300 }}
             >

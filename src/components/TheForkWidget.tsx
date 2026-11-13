@@ -1,4 +1,7 @@
+import { useLanguage } from '../context/LanguageContext';
+
 const TheForkWidget = () => {
+  const { t } = useLanguage();
   return (
     <div className="tf-widget-button">
       <a
@@ -7,7 +10,7 @@ const TheForkWidget = () => {
         target="_blank"
         rel="noopener"
       >
-        Réserver une table
+        {t('nav.reserve')}
       </a>
       <style>
         {`
@@ -36,7 +39,7 @@ const TheForkWidget = () => {
             color: #ffffff;
             font-family: inherit;
             font-size: 1em;
-            font-weight: 100;
+            font-weight: 400;
             width: 100%;
             text-align: center;
             display: flex;
@@ -44,7 +47,7 @@ const TheForkWidget = () => {
             justify-content: center;
           }
           .tf-button-link:hover {
-            font-weight: 300;
+            font-weight: 500;
             background: none !important;
           }
         `}

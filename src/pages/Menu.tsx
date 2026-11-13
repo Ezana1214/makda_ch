@@ -4,30 +4,23 @@ import BookingCTA from '../components/BookingCTA';
 import Seo from '../components/Seo';
 import BuffetBanner from '../components/BuffetBanner';
 import { SITE_URL } from '../data/restaurant';
-import {
-  dishSections,
-  servedWith,
-  menuMakda,
-  drinkGroups,
-  dessert,
-  allergenInfo,
-  allergenLabels,
-  stories,
-  type Dish,
-} from '../data/menu';
+import { Link } from 'react-router-dom';
+import { getMenu, type Dish } from '../data/menu';
+import { useLanguage } from '../context/LanguageContext';
+import type { Lang } from '../i18n';
 
 const RED = '#A83D2E';
 const BROWN = '#401400';
 const CREAM = '#FFF8EF';
 
-const nav = [
-  { id: 'entrees', label: 'Entrées' },
-  { id: 'viandes', label: 'Plats carnés' },
-  { id: 'vegetariens', label: 'Végétariens' },
-  { id: 'menu-makda', label: 'Menu Makda' },
-  { id: 'boissons', label: 'Boissons' },
-  { id: 'dessert', label: 'Dessert' },
-  { id: 'allergenes', label: 'Allergènes' },
+const navItems = [
+  { id: 'entrees', fr: 'Entrées', en: 'Starters' },
+  { id: 'viandes', fr: 'Plats carnés', en: 'Meat' },
+  { id: 'vegetariens', fr: 'Végétariens', en: 'Vegetarian' },
+  { id: 'menu-makda', fr: 'Menu Makda', en: 'Menu Makda' },
+  { id: 'boissons', fr: 'Boissons', en: 'Drinks' },
+  { id: 'dessert', fr: 'Dessert', en: 'Dessert' },
+  { id: 'allergenes', fr: 'Allergènes', en: 'Allergens' },
 ];
 
 const Stripe = () => (
@@ -57,7 +50,10 @@ const SectionTitle = ({ children, id }: { children: React.ReactNode; id?: string
   </div>
 );
 
-const DishCard = ({ dish }: { dish: Dish }) => (
+const DishCard = ({ dish }: { dish: Dish }) => {
+  const { lang, L } = useLanguage();
+  const labels = getMenu(lang).allergenLabels;
+  return (
   <motion.article
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +64,7 @@ const DishCard = ({ dish }: { dish: Dish }) => (
     {dish.image && (
       <img
         src={dish.image}
-        alt={`${dish.name} – plat du restaurant Makda`}
+        alt={L(`${dish.name} – plat du restaurant Makda`, `${dish.name} – dish at Makda restaurant`)}
         loading="lazy"
         width={144}
         height={144}
@@ -96,27 +92,28 @@ const DishCard = ({ dish }: { dish: Dish }) => (
         {dish.description}
       </p>
       <div className="mt-3 flex flex-wrap gap-1.5">
-        {dish.vegan && <Tag title="Végane">VG</Tag>}
-        {dish.vegetarian && !dish.vegan && <Tag title="Végétarien">V</Tag>}
-        {dish.glutenFree && <Tag title="Sans gluten (injera 100 % teff)">SG</Tag>}
-        {dish.halal && <Tag title="Viande certifiée halal">Halal</Tag>}
+        {dish.vegan && <Tag title={L('Végane', 'Vegan')}>VG</Tag>}
+        {dish.vegetarian && !dish.vegan && <Tag title={L('Végétarien', 'Vegetarian')}>V</Tag>}
+        {dish.glutenFree && <Tag title={L('Sans gluten (injera 100 % teff)', 'Gluten-free (100% teff injera)')}>{L('SG', 'GF')}</Tag>}
+        {dish.halal && <Tag title={L('Viande certifiée halal', 'Certified halal meat')}>Halal</Tag>}
         {dish.allergens?.map((a) => (
           <span key={a} className="text-[11px] px-2 py-0.5 rounded-full border" style={{ borderColor: '#E3CBB0', color: '#7A5852' }}>
-            {allergenLabels[a]}
+            {labels[a]}
           </span>
         ))}
       </div>
     </div>
   </motion.article>
-);
+  );
+};
 
-const menuJsonLd = {
+const menuJsonLd = (lang: Lang) => ({
   '@context': 'https://schema.org',
   '@type': 'Menu',
-  name: 'Carte du restaurant Makda',
-  url: `${SITE_URL}/menu`,
-  inLanguage: 'fr',
-  hasMenuSection: dishSections.map((s) => ({
+  name: lang === 'en' ? 'Makda restaurant menu' : 'Carte du restaurant Makda',
+  url: `${SITE_URL}${lang === 'en' ? '/en/menu' : '/menu'}`,
+  inLanguage: lang,
+  hasMenuSection: getMenu(lang).dishSections.map((s) => ({
     '@type': 'MenuSection',
     name: s.title,
     hasMenuItem: s.dishes.map((d) => ({
@@ -132,16 +129,21 @@ const menuJsonLd = {
       ].filter(Boolean),
     })),
   })),
-};
+});
 
 const Menu = () => {
+  const { lang, L, to } = useLanguage();
+  const { dishSections, servedWith, menuMakda, drinkGroups, dessert, allergenInfo, stories } = getMenu(lang);
   return (
     <>
       <Seo
-        path="/menu"
-        title="Menu éthiopien : injera, kitfo, tibs, plats végé – Makda"
-        description="La carte de Makda à Bernex : sambusa, kitfo, tibs, doro wat, misir et shiro véganes, Menu Makda à partager, tej maison et vins genevois. Injera 100 % teff sans gluten."
-        jsonLd={menuJsonLd}
+        path={to('menu')}
+        title={L('Menu éthiopien : injera, kitfo, tibs, plats végé – Makda', 'Ethiopian menu: injera, kitfo, tibs, vegan dishes – Makda')}
+        description={L(
+          'La carte de Makda à Bernex : sambusa, kitfo, tibs, doro wat, misir et shiro véganes, Menu Makda à partager, tej maison et vins genevois. Injera 100 % teff sans gluten.',
+          "Makda's menu in Bernex, Geneva: sambusa, kitfo, tibs, doro wat, vegan misir and shiro, the Menu Makda sharing platter, homemade tej and Geneva wines. Gluten-free 100% teff injera."
+        )}
+        jsonLd={menuJsonLd(lang)}
       />
 
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
@@ -151,7 +153,7 @@ const Menu = () => {
             fetchPriority="high"
             srcSet="/source/assortiment-plats-960.webp 960w, /source/assortiment-plats.webp 1920w"
             sizes="100vw"
-            alt="Assortiment de plats éthiopiens sur injera chez Makda"
+            alt={L('Assortiment de plats éthiopiens sur injera chez Makda', 'Selection of Ethiopian dishes on injera at Makda')}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/50"></div>
@@ -163,29 +165,32 @@ const Menu = () => {
           className="relative z-10 text-center text-white px-4"
         >
           <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 400 }}>
-            Notre carte
+            {L('Notre carte', 'Our menu')}
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ fontWeight: 300, color: '#ECEDEA' }}>
-            Cuisine éthiopienne et érythréenne maison, servie sur injera 100 % teff, à partager.
+            {L(
+              'Cuisine éthiopienne et érythréenne maison, servie sur injera 100 % teff, à partager.',
+              'Homemade Ethiopian and Eritrean food, served on 100% teff injera, made for sharing.'
+            )}
           </p>
         </motion.div>
       </section>
 
       {/* Navigation dans la carte */}
       <nav
-        aria-label="Sections de la carte"
+        aria-label={L('Sections de la carte', 'Menu sections')}
         className="sticky top-[96px] z-40 border-b backdrop-blur"
         style={{ backgroundColor: 'rgba(255,248,239,0.95)', borderColor: '#EBCDAD' }}
       >
         <div className="container mx-auto max-w-6xl px-4 flex gap-2 overflow-x-auto py-3 no-scrollbar">
-          {nav.map((n) => (
+          {navItems.map((n) => (
             <a
               key={n.id}
               href={`#${n.id}`}
               className="whitespace-nowrap px-4 py-2 rounded-full text-sm transition-colors hover:bg-[#5A2B20] hover:text-white"
               style={{ color: '#5A2B20', border: '1px solid #E3CBB0', fontWeight: 500 }}
             >
-              {n.label}
+              {L(n.fr, n.en)}
             </a>
           ))}
         </div>
@@ -194,10 +199,11 @@ const Menu = () => {
       <div style={{ backgroundColor: CREAM }}>
         {/* Légende */}
         <div className="container mx-auto max-w-6xl px-4 pt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm" style={{ color: '#5C3B33' }}>
-          <span className="flex items-center gap-2"><Tag title="Végane">VG</Tag> Végane</span>
-          <span className="flex items-center gap-2"><Tag title="Végétarien">V</Tag> Végétarien</span>
-          <span className="flex items-center gap-2"><Tag title="Sans gluten">SG</Tag> Sans gluten (injera 100 % teff)</span>
-          <span className="flex items-center gap-2"><Tag title="Halal">Halal</Tag> Viande certifiée halal</span>
+          <span className="flex items-center gap-2"><Tag title={L('Végane', 'Vegan')}>VG</Tag> {L('Végane', 'Vegan')}</span>
+          <span className="flex items-center gap-2"><Tag title={L('Végétarien', 'Vegetarian')}>V</Tag> {L('Végétarien', 'Vegetarian')}</span>
+          <span className="flex items-center gap-2"><Tag title={L('Sans gluten', 'Gluten-free')}>{L('SG', 'GF')}</Tag> {L('Sans gluten (injera 100 % teff)', 'Gluten-free (100% teff injera)')}</span>
+          <span className="flex items-center gap-2"><Tag title="Halal">Halal</Tag> {L('Viande certifiée halal', 'Certified halal meat')}</span>
+          <Link to={to('glutenFree')} className="underline font-semibold" style={{ color: '#5A2B20' }}>{L('Sans gluten & vegan : tout savoir', 'Gluten-free & vegan: the details')}</Link>
         </div>
 
         {dishSections.map((section) => (
@@ -233,12 +239,12 @@ const Menu = () => {
               {menuMakda.description}
             </p>
             <table className="w-full max-w-xl mx-auto text-center">
-              <caption className="sr-only">Prix du Menu Makda selon le nombre de personnes</caption>
+              <caption className="sr-only">{L('Prix du Menu Makda selon le nombre de personnes', 'Menu Makda prices by number of people')}</caption>
               <thead>
                 <tr className="text-sm uppercase tracking-wider" style={{ color: '#EBCDAD' }}>
                   <th className="py-2 font-medium text-left"></th>
-                  <th className="py-2 font-medium">Formule végane</th>
-                  <th className="py-2 font-medium">Formule carnée</th>
+                  <th className="py-2 font-medium">{L('Formule végane', 'Vegan')}</th>
+                  <th className="py-2 font-medium">{L('Formule carnée', 'With meat')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -260,7 +266,7 @@ const Menu = () => {
 
         {/* Boissons */}
         <section className="container mx-auto max-w-6xl px-4 pt-20" aria-labelledby="boissons">
-          <SectionTitle id="boissons">Boissons</SectionTitle>
+          <SectionTitle id="boissons">{L('Boissons', 'Drinks')}</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {drinkGroups.map((g) => (
               <div key={g.title} className="bg-white rounded-2xl p-6 shadow-sm">
@@ -297,12 +303,12 @@ const Menu = () => {
 
         {/* Allergènes */}
         <section className="container mx-auto max-w-4xl px-4 pt-20" aria-labelledby="allergenes">
-          <SectionTitle id="allergenes">Allergènes</SectionTitle>
+          <SectionTitle id="allergenes">{L('Allergènes', 'Allergens')}</SectionTitle>
           <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
             <div className="grid md:grid-cols-2 gap-8">
               {[
-                { title: 'À la carte et au buffet', rows: allergenInfo.carte },
-                { title: 'Boissons et dessert', rows: allergenInfo.boissons },
+                { title: L('À la carte et au buffet', 'À la carte and buffet'), rows: allergenInfo.carte },
+                { title: L('Boissons et dessert', 'Drinks and dessert'), rows: allergenInfo.boissons },
               ].map((block) => (
                 <div key={block.title}>
                   <h3 className="text-xl font-serif mb-3" style={{ color: BROWN }}>{block.title}</h3>
@@ -318,7 +324,7 @@ const Menu = () => {
               ))}
             </div>
             <p className="mt-6 text-sm" style={{ color: '#5C3B33' }}>
-              Les autres plats et boissons ne contiennent pas d'allergènes majeurs ajoutés.
+              {L("Les autres plats et boissons ne contiennent pas d'allergènes majeurs ajoutés.", 'Other dishes and drinks contain no added major allergens.')}
             </p>
             <div className="mt-6 flex items-start gap-3 rounded-xl p-4" style={{ backgroundColor: '#FBEDE0' }}>
               <AlertCircle size={22} className="flex-shrink-0 mt-0.5" style={{ color: RED }} />
@@ -331,14 +337,14 @@ const Menu = () => {
               className="mt-6 inline-flex items-center gap-2 text-sm underline"
               style={{ color: '#5A2B20', fontWeight: 600 }}
             >
-              <Download size={16} /> Télécharger la fiche allergènes (PDF)
+              <Download size={16} /> {L('Télécharger la fiche allergènes (PDF)', 'Download the allergen sheet (PDF, French)')}
             </a>
           </div>
         </section>
 
         {/* Traditions */}
         <section className="container mx-auto max-w-6xl px-4 pt-20" aria-labelledby="traditions">
-          <SectionTitle id="traditions">Le saviez-vous ?</SectionTitle>
+          <SectionTitle id="traditions">{L('Le saviez-vous ?', 'Did you know?')}</SectionTitle>
           <div className="grid md:grid-cols-3 gap-6">
             {stories.map((s) => (
               <div key={s.title} className="rounded-2xl p-6" style={{ backgroundColor: '#F3E3CF' }}>

@@ -39,6 +39,17 @@ export const buffet = {
   includes: 'Boissons chaudes et sirops à discrétion inclus. Réservation conseillée.',
 };
 
+export const buffetEn = {
+  title: 'All-you-can-eat buffet on the first Sunday of the month',
+  when: 'Every first Sunday of the month',
+  hours: '12pm to 5pm',
+  price: 'CHF 30 per person',
+  includes: 'Hot drinks and cordials included. Booking recommended.',
+};
+
+// Privatisation (confirmé par Ezana le 13.11.2026)
+export const privateHire = { indoor: 50, terrace: 20 };
+
 // Services et équipements (confirmés par Ezana le 12.11.2026)
 export const amenities = {
   freeParking: true,
@@ -114,4 +125,20 @@ export const restaurantJsonLd = {
     closes: h.closes,
   })),
   sameAs: [restaurant.instagram, restaurant.facebook],
+};
+
+export const restaurantJsonLdEn = {
+  ...restaurantJsonLd,
+  alternateName: 'Makda – Ethiopian & Eritrean restaurant',
+  description:
+    'Ethiopian and Eritrean restaurant in Bernex, Geneva: gluten-free 100% teff injera, slow-cooked stews, vegetarian and vegan options, an all-you-can-eat buffet on the first Sunday of the month, terrace, free parking and catering.',
+  url: `${SITE_URL}/en/`,
+  servesCuisine: ['Ethiopian', 'Eritrean', 'African', 'Vegetarian', 'Vegan', 'Gluten-free'],
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Free parking', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Terrace', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Dogs allowed', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'High chairs', value: true },
+  ],
+  hasMenu: `${SITE_URL}/en/menu`,
 };

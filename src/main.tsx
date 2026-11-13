@@ -11,11 +11,11 @@ const container = document.getElementById('root')!;
 const app = (
   <StrictMode>
     <HelmetProvider>
-      <LanguageProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <LanguageProvider>
           <App />
-        </BrowserRouter>
-      </LanguageProvider>
+        </LanguageProvider>
+      </BrowserRouter>
     </HelmetProvider>
   </StrictMode>
 );

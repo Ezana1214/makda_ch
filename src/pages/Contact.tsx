@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { hours } from '../data/restaurant';
+import { hours, restaurant } from '../data/restaurant';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
+  const { lang, L, to } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,10 +27,9 @@ const Contact = () => {
       name: formData.name,
       email: formData.email,
       message: formData.message,
+      langue: lang === 'en' ? 'anglais' : 'français',
       _subject: 'Nouveau message depuis le site Makda',
     };
-
-    console.log('Sending data:', payload);
 
     try {
       const response = await fetch(
@@ -46,11 +48,11 @@ const Contact = () => {
         setIsSuccess(true);
         setFormData({ name: '', email: '', message: '' });
       } else {
-        setError('Une erreur est survenue. Veuillez réessayer.');
+        setError(L('Une erreur est survenue. Veuillez réessayer.', 'Something went wrong. Please try again.'));
       }
     } catch (err) {
       console.error('Error:', err);
-      setError('Une erreur est survenue. Veuillez réessayer.');
+      setError(L('Une erreur est survenue. Veuillez réessayer.', 'Something went wrong. Please try again.'));
     } finally {
       setIsSubmitting(false);
     }
@@ -63,14 +65,17 @@ const Contact = () => {
     });
   };
 
-  const openingHours = hours.display;
+  const openingHours = lang === 'en' ? hours.displayEn : hours.display;
 
   return (
     <>
       <Seo
-        path="/contact"
-        title="Contact, horaires et accès – Makda, restaurant à Bernex"
-        description="Makda, Rue de Bernex 224, 1233 Bernex. Ouvert du mardi au dimanche, parking gratuit et terrasse. Réservation au +41 76 679 28 45 ou via le formulaire."
+        path={to('contact')}
+        title={L('Contact, horaires et accès – Makda, restaurant à Bernex', 'Contact, opening hours and directions – Makda, Bernex')}
+        description={L(
+          'Makda, Rue de Bernex 224, 1233 Bernex. Ouvert du mardi au dimanche, parking gratuit et terrasse. Réservation au +41 76 679 28 45 ou via le formulaire.',
+          'Makda, Rue de Bernex 224, 1233 Bernex, Geneva. Open Tuesday to Sunday, free parking and terrace. Book on +41 76 679 28 45 or through the form.'
+        )}
       />
 
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
@@ -78,7 +83,7 @@ const Contact = () => {
           <img
             src="/source/facade-makda-nuit.webp"
             fetchPriority="high"
-            alt="Contact Makda"
+            alt={L('Façade du restaurant Makda de nuit', 'Makda restaurant at night')}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/50"></div>
@@ -89,8 +94,8 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 400 }}>Contact & Réservation</h1>
-          <p className="text-xl text-white/90" style={{ fontWeight: 400 }}>Nous avons hâte de vous accueillir chez Makda.</p>
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 400 }}>{L('Contact & Réservation', 'Contact & Booking')}</h1>
+          <p className="text-xl text-white/90" style={{ fontWeight: 400 }}>{L('Nous avons hâte de vous accueillir chez Makda.', 'We look forward to welcoming you to Makda.')}</p>
         </motion.div>
       </section>
 
@@ -104,7 +109,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-serif text-brown-dark mb-8" style={{ fontWeight: 300 }}>
-                Nos Coordonnées
+                {L('Nos Coordonnées', 'Our Details')}
               </h2>
 
               <div className="space-y-6 mb-12">
@@ -113,10 +118,10 @@ const Contact = () => {
                     <MapPin size={24} className="text-brown-dark" />
                   </div>
                   <div>
-                    <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>Adresse</h3>
+                    <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>{L('Adresse', 'Address')}</h3>
                     <p className="text-brown-dark/80" style={{ fontWeight: 400 }}>
                       Rue de Bernex 224<br />
-                      1233 Bernex, Suisse
+                      1233 Bernex, {L('Suisse', 'Switzerland')}
                     </p>
                   </div>
                 </div>
@@ -126,8 +131,8 @@ const Contact = () => {
                     <Phone size={24} className="text-brown-dark" />
                   </div>
                   <div>
-                    <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>Téléphone</h3>
-                    <a href="tel:+41766792845" className="text-brown-dark/80 hover:text-brown-deep transition-colors" style={{ fontWeight: 400 }}>
+                    <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>{L('Téléphone', 'Phone')}</h3>
+                    <a href={`tel:${restaurant.phone}`} className="text-brown-dark/80 hover:text-brown-deep transition-colors" style={{ fontWeight: 400 }}>
                       +41 76 679 28 45
                     </a>
                   </div>
@@ -150,14 +155,14 @@ const Contact = () => {
                 <div className="flex items-center gap-3 mb-6">
                   <Clock size={28} className="text-gold-light" />
                   <h3 className="text-2xl font-serif text-white" style={{ fontWeight: 300 }}>
-                    Horaires d'ouverture
+                    {L("Horaires d'ouverture", 'Opening hours')}
                   </h3>
                 </div>
                 <div className="space-y-3">
                   {openingHours.map((item, index) => (
                     <div key={index} className="flex justify-between items-center pb-3 border-b border-white/10 last:border-0">
                       <span className="text-white" style={{ fontWeight: 300 }}>{item.day}</span>
-                      <span className={`${item.hours === 'Fermé' ? 'text-white/50' : 'text-white/80'}`} style={{ fontWeight: 400 }}>
+                      <span className={`${(item.hours === 'Fermé' || item.hours === 'Closed') ? 'text-white/50' : 'text-white/80'}`} style={{ fontWeight: 400 }}>
                         {item.hours}
                       </span>
                     </div>
@@ -174,15 +179,15 @@ const Contact = () => {
             >
               <div className="bg-brown-deep rounded-2xl p-8 shadow-xl h-full">
                 <h2 className="text-3xl font-serif text-white mb-4" style={{ fontWeight: 300 }}>
-                  Nous contacter
+                  {L('Nous contacter', 'Get in touch')}
                 </h2>
                 <p className="text-white/80 mb-8" style={{ fontWeight: 400 }}>
-                  Une question ? Une demande particulière ? Écrivez-nous.
+                  {L('Une question ? Une demande particulière ? Écrivez-nous.', 'A question or a special request? Write to us.')}
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-white/90 mb-2 text-sm" style={{ fontWeight: 300 }}>
-                      Nom complet
+                      {L('Nom complet', 'Full name')}
                     </label>
                     <input
                       type="text"
@@ -193,7 +198,7 @@ const Contact = () => {
                       required
                       disabled={isSubmitting}
                       className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-gold-muted transition-colors disabled:opacity-50"
-                      placeholder="Votre nom"
+                      placeholder={L('Votre nom', 'Your name')}
                     />
                   </div>
 
@@ -210,7 +215,7 @@ const Contact = () => {
                       required
                       disabled={isSubmitting}
                       className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-gold-muted transition-colors disabled:opacity-50"
-                      placeholder="votre@email.com"
+                      placeholder={L('votre@email.com', 'you@email.com')}
                     />
                   </div>
 
@@ -227,13 +232,13 @@ const Contact = () => {
                       disabled={isSubmitting}
                       rows={6}
                       className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-gold-muted transition-colors resize-none disabled:opacity-50"
-                      placeholder="Votre message..."
+                      placeholder={L('Votre message…', 'Your message…')}
                     />
                   </div>
 
                   {isSuccess && (
                     <div className="p-4 rounded-lg bg-green-500/20 text-green-100" style={{ fontWeight: 400 }}>
-                      Merci ! Nous avons reçu votre message.
+                      {L('Merci ! Nous avons reçu votre message.', 'Thank you! We have received your message.')}
                     </div>
                   )}
 
@@ -249,7 +254,7 @@ const Contact = () => {
                     className="w-full bg-white text-brown-dark px-8 py-4 rounded-full hover:bg-gold-light transition-colors text-base disabled:opacity-50 disabled:cursor-not-allowed"
                     style={{ fontWeight: 300 }}
                   >
-                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+                    {isSubmitting ? L('Envoi en cours…', 'Sending…') : L('Envoyer le message', 'Send message')}
                   </button>
                 </form>
               </div>
@@ -258,17 +263,23 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 flex items-center justify-center" style={{ backgroundColor: '#EBCDAD' }}>
+      <section className="py-12 px-4 flex flex-col items-center justify-center gap-6" style={{ backgroundColor: '#EBCDAD' }}>
+        <p className="text-center" style={{ color: '#401400' }}>
+          {L('Parking gratuit sur place.', 'Free parking on site.')}{' '}
+          <Link to={to('access')} className="underline font-semibold">{L('Accès en voiture et en transports publics', 'Getting here by car or public transport')}</Link>
+          {' · '}
+          <Link to={to('privateHire')} className="underline font-semibold">{L('Privatiser le restaurant', 'Private hire')}</Link>
+        </p>
         <div className="w-full max-w-4xl h-[400px] rounded-2xl overflow-hidden shadow-lg">
           <iframe
-            src="https://www.google.com/maps?q=Makda%2C%20Rue%20de%20Bernex%20224%2C%201233%20Bernex&hl=fr&z=16&output=embed"
+            src={`https://www.google.com/maps?q=Makda%2C%20Rue%20de%20Bernex%20224%2C%201233%20Bernex&hl=${lang}&z=16&output=embed`}
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Plan d'accès au restaurant Makda à Bernex"
+            title={L("Plan d'accès au restaurant Makda à Bernex", 'Map to Makda restaurant in Bernex')}
           />
         </div>
       </section>
