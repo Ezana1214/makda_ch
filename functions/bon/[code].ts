@@ -13,13 +13,17 @@ ${refresh ? '<meta http-equiv="refresh" content="4">' : ''}
 <title>${escapeHtml(title)}</title>
 <link rel="icon" href="/favicon.ico">
 <style>
+  @font-face{font-family:"Yeseva One";src:url(/fonts/yeseva-one.woff2) format("woff2");font-display:swap}
+  @font-face{font-family:Manrope;src:url(/fonts/manrope-400.woff2) format("woff2");font-weight:400;font-display:swap}
+  @font-face{font-family:Manrope;src:url(/fonts/manrope-700.woff2) format("woff2");font-weight:700;font-display:swap}
   *{box-sizing:border-box}
   body{margin:0;background:#EBCDAD;font-family:Manrope,"Helvetica Neue",Arial,sans-serif;color:#401400;padding:24px}
   .card{max-width:760px;margin:0 auto;background:#FFF8EF;border-radius:20px;box-shadow:0 20px 50px rgba(64,20,0,.18);overflow:hidden}
-  .top{background:#401400;color:#fff;padding:28px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .top img{height:56px;background:#FFF8EF;border-radius:10px;padding:6px 10px}
-  .top span{letter-spacing:.2em;text-transform:uppercase;font-size:13px;font-weight:700;color:#F3D9B9}
-  .body{padding:40px 36px;text-align:center;border:2px dashed #E3CBB0;margin:24px;border-radius:14px}
+  .card::before{content:"";display:block;height:8px;background:#A83D2E}
+  .top{padding:32px 36px 0;text-align:center}
+  .top img{height:72px;display:block;margin:0 auto 10px}
+  .top span{letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:700;color:#5C3B33}
+  .body{padding:36px 36px;text-align:center;border:2px dashed #E3CBB0;margin:20px 24px 24px;border-radius:14px}
   .kicker{letter-spacing:.25em;text-transform:uppercase;font-size:13px;font-weight:700;color:#A83D2E;margin:0 0 10px}
   h1{font-family:"Yeseva One",Georgia,serif;font-weight:400;font-size:44px;margin:0 0 6px}
   .amount{font-family:"Yeseva One",Georgia,serif;font-size:64px;color:#A83D2E;margin:10px 0 6px}
@@ -27,15 +31,15 @@ ${refresh ? '<meta http-equiv="refresh" content="4">' : ''}
   .to{font-size:20px;margin:18px 0 4px}
   .msg{font-style:italic;font-size:18px;line-height:1.6;max-width:520px;margin:16px auto;white-space:pre-line}
   .from{font-size:16px;margin:0 0 22px}
-  .code{display:inline-block;font-family:"Courier New",monospace;font-size:24px;font-weight:700;letter-spacing:.12em;background:#fff;border:1px solid #E3CBB0;border-radius:10px;padding:10px 18px;margin:8px 0}
+  .code{display:inline-block;font-family:"Courier New",monospace;font-size:24px;font-weight:700;letter-spacing:.12em;background:#fff;border:1px solid #E3CBB0;border-radius:10px;padding:10px 18px;margin:8px 0;white-space:nowrap}
   .small{font-size:14px;line-height:1.6;color:#5C3B33}
   .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:0 36px 28px;font-size:14px;color:#5C3B33}
   .actions{max-width:760px;margin:20px auto 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .btn{background:#A83D2E;color:#fff;border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;font-family:inherit}
   .btn.alt{background:#fff;color:#401400}
   .notice{max-width:560px;margin:60px auto;background:#FFF8EF;border-radius:16px;padding:32px;text-align:center;line-height:1.6}
-  @media (max-width:560px){h1{font-size:32px}.amount{font-size:48px}.body{margin:14px;padding:28px 16px}.top{padding:20px}.foot{padding:0 20px 20px}}
-  @media print{body{background:#fff;padding:0}.card{box-shadow:none}.actions{display:none}@page{margin:12mm}}
+  @media (max-width:560px){h1{font-size:32px}.amount{font-size:48px}.body{margin:14px;padding:28px 16px}.top{padding:24px 20px 0}.top img{height:60px}.code{font-size:18px;letter-spacing:.08em;padding:10px 12px}.foot{padding:0 20px 20px}}
+  @media print{body{background:#fff;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}.card{box-shadow:none}.actions{display:none}@page{margin:12mm}}
 </style>
 </head>
 <body>${inner}</body>
