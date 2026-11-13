@@ -89,8 +89,8 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>Contact & Réservation</h1>
-          <p className="text-xl text-white/90" style={{ fontWeight: 100 }}>Nous avons hâte de vous accueillir chez Makda.</p>
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 400 }}>Contact & Réservation</h1>
+          <p className="text-xl text-white/90" style={{ fontWeight: 400 }}>Nous avons hâte de vous accueillir chez Makda.</p>
         </motion.div>
       </section>
 
@@ -114,7 +114,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>Adresse</h3>
-                    <p className="text-brown-dark/80" style={{ fontWeight: 100 }}>
+                    <p className="text-brown-dark/80" style={{ fontWeight: 400 }}>
                       Rue de Bernex 224<br />
                       1233 Bernex, Suisse
                     </p>
@@ -127,7 +127,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>Téléphone</h3>
-                    <a href="tel:+41766792845" className="text-brown-dark/80 hover:text-brown-deep transition-colors" style={{ fontWeight: 100 }}>
+                    <a href="tel:+41766792845" className="text-brown-dark/80 hover:text-brown-deep transition-colors" style={{ fontWeight: 400 }}>
                       +41 76 679 28 45
                     </a>
                   </div>
@@ -139,7 +139,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-brown-dark text-lg mb-2" style={{ fontWeight: 300 }}>Email</h3>
-                    <a href="mailto:contact@makda.ch" className="text-brown-dark/80 hover:text-brown-deep transition-colors" style={{ fontWeight: 100 }}>
+                    <a href="mailto:contact@makda.ch" className="text-brown-dark/80 hover:text-brown-deep transition-colors" style={{ fontWeight: 400 }}>
                       contact@makda.ch
                     </a>
                   </div>
@@ -157,7 +157,7 @@ const Contact = () => {
                   {openingHours.map((item, index) => (
                     <div key={index} className="flex justify-between items-center pb-3 border-b border-white/10 last:border-0">
                       <span className="text-white" style={{ fontWeight: 300 }}>{item.day}</span>
-                      <span className={`${item.hours === 'Fermé' ? 'text-white/50' : 'text-white/80'}`} style={{ fontWeight: 100 }}>
+                      <span className={`${item.hours === 'Fermé' ? 'text-white/50' : 'text-white/80'}`} style={{ fontWeight: 400 }}>
                         {item.hours}
                       </span>
                     </div>
@@ -176,7 +176,7 @@ const Contact = () => {
                 <h2 className="text-3xl font-serif text-white mb-4" style={{ fontWeight: 300 }}>
                   Nous contacter
                 </h2>
-                <p className="text-white/80 mb-8" style={{ fontWeight: 100 }}>
+                <p className="text-white/80 mb-8" style={{ fontWeight: 400 }}>
                   Une question ? Une demande particulière ? Écrivez-nous.
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -232,13 +232,13 @@ const Contact = () => {
                   </div>
 
                   {isSuccess && (
-                    <div className="p-4 rounded-lg bg-green-500/20 text-green-100" style={{ fontWeight: 100 }}>
+                    <div className="p-4 rounded-lg bg-green-500/20 text-green-100" style={{ fontWeight: 400 }}>
                       Merci ! Nous avons reçu votre message.
                     </div>
                   )}
 
                   {error && (
-                    <div className="p-4 rounded-lg bg-red-500/20 text-red-100" style={{ fontWeight: 100 }}>
+                    <div className="p-4 rounded-lg bg-red-500/20 text-red-100" style={{ fontWeight: 400 }}>
                       {error}
                     </div>
                   )}

@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { AlertCircle, Download, Phone, CalendarCheck } from 'lucide-react';
+import { AlertCircle, Download } from 'lucide-react';
+import BookingCTA from '../components/BookingCTA';
 import Seo from '../components/Seo';
 import BuffetBanner from '../components/BuffetBanner';
-import { restaurant, SITE_URL } from '../data/restaurant';
+import { SITE_URL } from '../data/restaurant';
 import {
   dishSections,
   servedWith,
@@ -161,7 +162,7 @@ const Menu = () => {
           transition={{ duration: 0.6 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 400 }}>
             Notre carte
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ fontWeight: 300, color: '#ECEDEA' }}>
@@ -348,31 +349,8 @@ const Menu = () => {
           </div>
         </section>
 
-        {/* Appel à l'action */}
-        <section className="container mx-auto max-w-4xl px-4 py-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif mb-6" style={{ color: BROWN, fontWeight: 300 }}>
-            Envie de goûter ?
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={restaurant.theforkUrl}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white"
-              style={{ backgroundColor: '#5A2B20' }}
-            >
-              <CalendarCheck size={18} /> Réserver une table
-            </a>
-            <a
-              href={`tel:${restaurant.phone}`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border"
-              style={{ borderColor: '#5A2B20', color: '#5A2B20' }}
-            >
-              <Phone size={18} /> {restaurant.phoneDisplay}
-            </a>
-          </div>
-        </section>
       </div>
+      <BookingCTA dark />
     </>
   );
 };

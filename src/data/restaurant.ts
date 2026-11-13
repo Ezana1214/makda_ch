@@ -19,7 +19,14 @@ export const restaurant = {
   email: 'contact@makda.ch',
   instagram: 'https://www.instagram.com/makda_restaurant/',
   facebook: 'https://www.facebook.com/profile.php?id=61561990207554',
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Makda+Rue+de+Bernex+224+1233+Bernex',
+  mapsUrl: 'https://maps.google.com/?cid=5705022007057696673',
+  directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Makda%2C+Rue+de+Bernex+224%2C+1233+Bernex',
+  reviewsUrl: 'https://maps.google.com/?cid=5705022007057696673',
+  googleRating: '4,9',
+  googleReviewCount: 182,
+  theforkRating: '9,4',
+  takeaway: true, // vente à emporter, commande par téléphone
+  cateringArea: 'Suisse romande',
   theforkUrl: 'https://widget.thefork.com/c210f176-61da-4d21-acdb-fc90eeae5a6c',
 };
 

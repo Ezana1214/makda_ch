@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import LegalNotice from './pages/LegalNotice';
 import NotFound from './pages/NotFound';
+import MobileActionBar from './components/MobileActionBar';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -22,7 +23,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream pb-16 lg:pb-0">
       <ScrollToTop />
       <TopBar />
       <Navbar />
@@ -40,6 +41,7 @@ function App() {
         </Routes>
       </main>
       <AppFooter />
+      <MobileActionBar />
     </div>
   );
 }

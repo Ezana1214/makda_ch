@@ -7,6 +7,9 @@ import GoogleReviewBadge from '../components/GoogleReviewBadge';
 import TheForkWidget from '../components/TheForkWidget';
 import { useLanguage } from '../context/LanguageContext';
 import BuffetBanner from '../components/BuffetBanner';
+import FeaturedDishes from '../components/FeaturedDishes';
+import InfoAccess from '../components/InfoAccess';
+import BookingCTA from '../components/BookingCTA';
 
 const Home = () => {
   const { language } = useLanguage();
@@ -43,14 +46,14 @@ const Home = () => {
           <h1 className="text-sm md:text-base mb-4 uppercase tracking-widest text-accent">
             {language === 'fr' ? 'Restaurant éthiopien & érythréen à Bernex, Genève' : 'Ethiopian & Eritrean restaurant in Bernex, Geneva'}
           </h1>
-          <p className="text-5xl md:text-7xl font-serif mb-6 leading-tight text-white" style={{ fontWeight: 100 }}>
+          <p className="text-5xl md:text-7xl font-serif mb-6 leading-tight text-white" style={{ fontWeight: 400 }}>
             {language === 'fr' ? (
               <>Un voyage culinaire<br />au cœur de l'Afrique</>
             ) : (
               <>A culinary journey<br />to the heart of Africa</>
             )}
           </p>
-          <p className="text-lg md:text-xl mb-10 text-text max-w-3xl mx-auto" style={{ fontWeight: 100 }}>
+          <p className="text-lg md:text-xl mb-10 text-text max-w-3xl mx-auto" style={{ fontWeight: 400 }}>
             {language === 'fr'
               ? 'Une expérience authentique à Bernex, où chaque plat raconte une histoire millénaire de partage et de saveurs.'
               : 'An authentic experience in Bernex, where each dish tells a thousand-year-old story of sharing and flavors.'}
@@ -120,15 +123,15 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#5A2B20', fontWeight: 100 }}>
+              <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#5A2B20', fontWeight: 400 }}>
                 {language === 'fr' ? 'Vivez l\'ambiance authentique de Makda' : 'Experience the authentic atmosphere of Makda'}
               </h2>
-              <p className="text-lg leading-relaxed mb-6" style={{ color: '#7A5852', fontWeight: 100 }}>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: '#7A5852', fontWeight: 400 }}>
                 {language === 'fr'
                   ? 'Plongez dans un cadre authentique et accueillant, où chaque détail a été pensé pour vous offrir une expérience unique. Que ce soit pour un dîner en famille ou entre amis, Makda est l\'endroit idéal.'
                   : 'Immerse yourself in an authentic and welcoming setting, where every detail has been designed to offer you a unique experience. Whether for a family dinner or with friends, Makda is the ideal place.'}
               </p>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#7A5852', fontWeight: 100 }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: '#7A5852', fontWeight: 400 }}>
                 {language === 'fr'
                   ? 'Laissez-vous transporter par une atmosphère conviviale et des saveurs raffinées qui éveilleront vos sens. Profitez d\'un moment de détente et de partage autour de la richesse culinaire de la Corne de l\'Afrique.'
                   : 'Let yourself be transported by a friendly atmosphere and refined flavors that will awaken your senses. Enjoy a moment of relaxation and sharing around the culinary richness of the Horn of Africa.'}
@@ -136,7 +139,7 @@ const Home = () => {
               <Link
                 to="/histoire"
                 className="inline-flex items-center gap-2 text-lg hover:gap-4 transition-all underline"
-                style={{ color: '#5A2B20', fontWeight: 100 }}
+                style={{ color: '#5A2B20', fontWeight: 400 }}
               >
                 {language === 'fr' ? 'Notre histoire et traditions' : 'Our story and traditions'}
                 <ArrowRight size={20} />
@@ -145,6 +148,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <FeaturedDishes />
 
       <section className="py-24 px-4 text-white" style={{ backgroundColor: '#401400' }}>
         <div className="container mx-auto max-w-7xl">
@@ -158,7 +163,7 @@ const Home = () => {
             <p className="text-sm uppercase tracking-widest mb-3" style={{ color: '#E5C7A4' }}>
               {language === 'fr' ? 'Traiteur & Événements' : 'Catering & Events'}
             </p>
-            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#FFFFFF', fontWeight: 100 }}>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#FFFFFF', fontWeight: 400 }}>
               {language === 'fr' ? 'Nos Services sur Mesure' : 'Our Custom Services'}
             </h2>
             <p className="text-lg max-w-3xl mx-auto mb-16 font-thin" style={{ color: '#D9D1CC' }}>
@@ -213,7 +218,7 @@ const Home = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-serif mb-3" style={{ fontWeight: 300 }}>{service.title}</h3>
-                  <p className="text-brown-dark/80 leading-relaxed mb-4" style={{ fontWeight: 100 }}>{service.description}</p>
+                  <p className="text-brown-dark/80 leading-relaxed mb-4" style={{ fontWeight: 400 }}>{service.description}</p>
                   <Link
                     to="/traiteur"
                     className="inline-flex items-center gap-2 text-gold-muted hover:gap-4 transition-all text-sm"
@@ -238,6 +243,10 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <InfoAccess />
+
+      <BookingCTA dark />
     </>
   );
 };

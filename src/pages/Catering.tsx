@@ -1,7 +1,7 @@
 import Seo from '../components/Seo';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, UtensilsCrossed, Wine, Coffee, Sparkles, ArrowRight } from 'lucide-react';
+import QuoteForm from '../components/QuoteForm';
 
 const Catering = () => {
   const benefits = [
@@ -39,7 +39,7 @@ const Catering = () => {
       <Seo
         path="/traiteur"
         title="Traiteur éthiopien à Genève – mariages, entreprises | Makda"
-        description="Traiteur éthiopien et érythréen à Genève : buffets à partager, finger food, cérémonie du café. Mariages, événements d'entreprise et fêtes privées."
+        description="Traiteur éthiopien et érythréen à Genève : buffets à partager, finger food, cérémonie du café. Mariages, entreprises et fêtes privées dans toute la Suisse romande."
       />
 
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
@@ -60,8 +60,8 @@ const Catering = () => {
           transition={{ duration: 0.6 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 100 }}>Traiteur éthiopien à Genève</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto" style={{ fontWeight: 100 }}>
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white" style={{ fontWeight: 400 }}>Traiteur éthiopien à Genève</h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto" style={{ fontWeight: 400 }}>
             Apportez la magie de Makda à vos événements. Une expérience culinaire inoubliable pour vos invités.
           </p>
         </motion.div>
@@ -79,7 +79,7 @@ const Catering = () => {
               <h2 className="text-4xl md:text-5xl font-serif mb-6 leading-tight" style={{ fontWeight: 300, color: '#401400' }}>
                 Pour vos moments d'exception
               </h2>
-              <p className="text-lg leading-relaxed mb-10" style={{ fontWeight: 100, color: '#401400' }}>
+              <p className="text-lg leading-relaxed mb-10" style={{ fontWeight: 400, color: '#401400' }}>
                 Que ce soit pour un mariage fastueux, un événement d'entreprise prestigieux ou une fête intime entre amis, notre service traiteur s'adapte à vos besoins. Nous proposons bien plus qu'un repas : une véritable immersion culturelle.
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5 mb-10">
@@ -99,14 +99,14 @@ const Catering = () => {
                   </motion.li>
                 ))}
               </ul>
-              <Link
-                to="/contact"
+              <a
+                href="#devis"
                 className="inline-flex items-center gap-2 text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-base"
-                style={{ backgroundColor: '#5A2B20', fontWeight: 300 }}
+                style={{ backgroundColor: '#5A2B20', fontWeight: 500 }}
               >
                 Demander un devis
                 <ArrowRight size={18} />
-              </Link>
+              </a>
             </motion.div>
 
             <motion.div
@@ -145,7 +145,7 @@ const Catering = () => {
             <h2 className="text-4xl md:text-5xl font-serif mb-6 text-white" style={{ fontWeight: 300 }}>
               L'Expérience Traiteur Makda
             </h2>
-            <p className="text-xl max-w-2xl mx-auto text-white/80" style={{ fontWeight: 100 }}>
+            <p className="text-xl max-w-2xl mx-auto text-white/80" style={{ fontWeight: 400 }}>
               Des solutions sur mesure pour faire de chaque occasion un moment inoubliable.
             </p>
           </motion.div>
@@ -166,22 +166,37 @@ const Catering = () => {
                     <Icon size={26} className="text-brown-dark" />
                   </span>
                   <h3 className="text-xl font-serif mb-3 text-white" style={{ fontWeight: 300 }}>{feature.title}</h3>
-                  <p className="leading-relaxed text-sm text-white/80" style={{ fontWeight: 100 }}>{feature.description}</p>
+                  <p className="leading-relaxed text-sm text-white/80" style={{ fontWeight: 400 }}>{feature.description}</p>
                 </motion.div>
               );
             })}
           </div>
 
           <div className="text-center">
-            <Link
-              to="/contact"
+            <a
+              href="#devis"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-base"
-              style={{ backgroundColor: '#EBCDAD', color: '#401400', fontWeight: 300 }}
+              style={{ backgroundColor: '#EBCDAD', color: '#401400', fontWeight: 500 }}
             >
               Planifier mon événement
               <ArrowRight size={18} />
-            </Link>
+            </a>
           </div>
+        </div>
+      </section>
+
+      <section id="devis" className="px-4 py-16 md:py-24 scroll-mt-28" style={{ backgroundColor: '#FFF8EF' }} aria-labelledby="devis-titre">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 id="devis-titre" className="text-4xl md:text-5xl font-serif mb-4" style={{ color: '#401400', fontWeight: 300 }}>
+              Demandez votre devis
+            </h2>
+            <p className="max-w-2xl mx-auto leading-relaxed" style={{ color: '#5C3B33' }}>
+              Quelques informations sur votre événement et nous vous préparons une proposition sur mesure.
+              Nous nous déplaçons dans toute la Suisse romande.
+            </p>
+          </div>
+          <QuoteForm />
         </div>
       </section>
     </>

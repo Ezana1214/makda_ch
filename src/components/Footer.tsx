@@ -15,7 +15,7 @@ const Footer = () => {
                 className="h-24 w-auto"
               />
             </div>
-            <p className="leading-relaxed text-sm" style={{ color: '#5A2B20', fontWeight: 100 }}>
+            <p className="leading-relaxed text-sm" style={{ color: '#5A2B20', fontWeight: 400 }}>
               Un voyage culinaire authentique au cœur de Bernex. Découvrez les saveurs de l'Éthiopie et de l'Érythrée.
             </p>
           </div>
@@ -23,17 +23,17 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-serif mb-6" style={{ color: '#5A2B20', fontWeight: 300 }}>Contact</h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 text-sm" style={{ color: '#5A2B20', fontWeight: 100 }}>
+              <div className="flex items-start gap-3 text-sm" style={{ color: '#5A2B20', fontWeight: 400 }}>
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
                 <span>Rue de Bernex 224, 1233 Bernex</span>
               </div>
-              <div className="flex items-start gap-3 text-sm" style={{ color: '#5A2B20', fontWeight: 100 }}>
+              <div className="flex items-start gap-3 text-sm" style={{ color: '#5A2B20', fontWeight: 400 }}>
                 <Phone size={18} className="mt-1 flex-shrink-0" />
                 <a href="tel:+41766792845" className="hover:text-gold-muted transition-colors">
                   +41 76 679 28 45
                 </a>
               </div>
-              <div className="flex items-start gap-3 text-sm" style={{ color: '#5A2B20', fontWeight: 100 }}>
+              <div className="flex items-start gap-3 text-sm" style={{ color: '#5A2B20', fontWeight: 400 }}>
                 <Clock size={18} className="mt-1 flex-shrink-0" />
                 <div>
                   {hours.display.map((h) => (
@@ -61,7 +61,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-brown-dark/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm" style={{ color: '#5A2B20', fontWeight: 100 }}>
+        <div className="border-t border-brown-dark/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm" style={{ color: '#5A2B20', fontWeight: 400 }}>
           <p>&copy; {new Date().getFullYear()} MAKDA Sàrl. Tous droits réservés.</p>
           <div className="flex gap-6">
             <Link to="/confidentialite" className="hover:text-gold-muted transition-colors">

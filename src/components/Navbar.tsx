@@ -49,7 +49,7 @@ const Navbar = () => {
                 className={`text-brown-dark hover:text-gold-muted transition-colors text-sm tracking-wide ${
                   isActive(link.to) ? 'text-gold-muted' : ''
                 }`}
-                style={{ fontWeight: 100 }}
+                style={{ fontWeight: 400 }}
               >
                 {link.label}
               </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
                   className={`text-brown-dark hover:text-gold-muted transition-colors text-sm tracking-wide ${
                     isActive(link.to) ? 'text-gold-muted' : ''
                   }`}
-                  style={{ fontWeight: 100 }}
+                  style={{ fontWeight: 400 }}
                 >
                   {link.label}
                 </Link>

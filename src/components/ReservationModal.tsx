@@ -34,7 +34,7 @@ const ReservationModal = ({ isOpen, onClose }: ReservationModalProps) => {
 
               <div className="p-8">
                 <h2 className="text-4xl font-serif text-brown-dark mb-2" style={{ fontWeight: 300 }}>Réserver une table</h2>
-                <p className="text-brown-dark/70 mb-8" style={{ fontWeight: 100 }}>
+                <p className="text-brown-dark/70 mb-8" style={{ fontWeight: 400 }}>
                   Réservez votre table et vivez une expérience culinaire inoubliable
                 </p>
 
@@ -44,7 +44,7 @@ const ReservationModal = ({ isOpen, onClose }: ReservationModalProps) => {
                       <span className="text-2xl">🍽️</span>
                     </div>
                     <h3 className="text-2xl font-serif mb-4" style={{ fontWeight: 300 }}>Widget de réservation TheFork</h3>
-                    <p className="text-white/80 mb-6" style={{ fontWeight: 100 }}>
+                    <p className="text-white/80 mb-6" style={{ fontWeight: 400 }}>
                       Le widget de réservation TheFork sera intégré ici pour permettre aux clients de réserver directement en ligne.
                     </p>
                     <div className="bg-white/10 rounded-lg p-6 border-2 border-dashed border-white/30">
@@ -56,7 +56,7 @@ const ReservationModal = ({ isOpen, onClose }: ReservationModalProps) => {
                 </div>
 
                 <div className="mt-8 text-center">
-                  <p className="text-brown-dark/70 mb-2" style={{ fontWeight: 100 }}>Vous pouvez également nous contacter directement</p>
+                  <p className="text-brown-dark/70 mb-2" style={{ fontWeight: 400 }}>Vous pouvez également nous contacter directement</p>
                   <a href="tel:+41766792845" className="text-gold-muted text-lg hover:underline" style={{ fontWeight: 300 }}>
                     +41 76 679 28 45
                   </a>
