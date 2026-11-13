@@ -20,27 +20,17 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     await env.MAKDA_KV.put(key, JSON.stringify({ email, lang, source, createdAt: new Date().toISOString() }));
   }
 
-  let brevo: number | string = 'off';
   if (env.BREVO_API_KEY && env.BREVO_LIST_ID) {
     try {
       const res = await fetch('https://api.brevo.com/v3/contacts', {
         method: 'POST',
         headers: { 'api-key': env.BREVO_API_KEY, 'content-type': 'application/json', accept: 'application/json' },
-        body: JSON.stringify({
-          email,
-          listIds: [Number(env.BREVO_LIST_ID)],
-          updateEnabled: true,
-        }),
+        body: JSON.stringify({ email, listIds: [Number(env.BREVO_LIST_ID)], updateEnabled: true }),
       });
-      brevo = res.status; // 201/204 = ajouté dans Brevo
-      if (!res.ok) {
-        const err = (await res.json().catch(() => ({}))) as { code?: string; message?: string };
-        brevo = `${res.status} ${err.code ?? ''} ${(err.message ?? '').replace(/\d{1,3}(\.\d{1,3}){3}|[0-9a-f:]{6,}/gi, '…').slice(0, 160)}`.trim();
-      }
+      if (!res.ok) console.error('Brevo', res.status, await res.text()); // visible dans les journaux Cloudflare
     } catch (e) {
-      brevo = 'error';
       console.error(e);
     }
   }
-  return json({ ok: true, brevo });
+  return json({ ok: true });
 };
