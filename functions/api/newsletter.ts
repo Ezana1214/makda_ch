@@ -29,7 +29,6 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
           email,
           listIds: [Number(env.BREVO_LIST_ID)],
           updateEnabled: true,
-          attributes: { LANGUE: lang, SOURCE: source },
         }),
       });
     } catch (e) {
