@@ -3,6 +3,7 @@ import { Phone, MapPin, Clock } from 'lucide-react';
 import { hours, restaurant } from '../data/restaurant';
 import { useLanguage } from '../context/LanguageContext';
 import type { RouteId } from '../i18n';
+import NewsletterForm from './NewsletterForm';
 
 const Footer = () => {
   const { lang, L, to } = useLanguage();
@@ -15,6 +16,8 @@ const Footer = () => {
     ['weddings', 'Traiteur mariage', 'Wedding catering'],
     ['corporate', 'Traiteur entreprise', 'Corporate catering'],
     ['parties', 'Traiteur fête privée', 'Private party catering'],
+    ['journal', 'Le journal', 'Journal'],
+    ['giftVouchers', 'Bons cadeaux', 'Gift vouchers'],
   ];
 
   return (
@@ -87,6 +90,19 @@ const Footer = () => {
               />
             </div>
           </div>
+        </div>
+
+        <div className="border-t border-brown-dark/10 py-10 grid md:grid-cols-2 gap-6 items-center">
+          <div>
+            <h3 className="text-xl font-serif mb-2" style={color}>{L('Les nouvelles de Makda', 'News from Makda')}</h3>
+            <p className="text-sm leading-relaxed" style={color}>
+              {L(
+                'Buffets du dimanche, nouveaux plats et fêtes éthiopiennes : environ un e-mail par mois.',
+                'Sunday buffets, new dishes and Ethiopian festivals: about one email a month.'
+              )}
+            </p>
+          </div>
+          <NewsletterForm source="footer" />
         </div>
 
         <div className="border-t border-brown-dark/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm" style={color}>

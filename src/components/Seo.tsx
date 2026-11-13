@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { SITE_URL } from '../data/restaurant';
-import { langFromPath, routeIdFromPath, routes } from '../i18n';
+import { langFromPath, pairFromPath } from '../i18n';
 
 interface SeoProps {
   title: string;
@@ -11,15 +11,16 @@ interface SeoProps {
   imageAlt?: string;
   noindex?: boolean;
   jsonLd?: object | object[];
+  type?: 'website' | 'article';
 }
 
-const Seo = ({ title, description, path, image = '/og-image.jpg', imageAlt, noindex = false, jsonLd }: SeoProps) => {
+const Seo = ({ title, description, path, image = '/og-image.jpg', imageAlt, noindex = false, jsonLd, type = 'website' }: SeoProps) => {
   const lang = langFromPath(path);
   const url = `${SITE_URL}${path}`;
   const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image}`;
   const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-  const id = routeIdFromPath(path);
-  const alt = id && routes[id].fr !== routes[id].en ? routes[id] : null;
+  const pair = pairFromPath(path);
+  const alt = pair && pair.fr !== pair.en ? pair : null;
   const altText =
     imageAlt ?? (lang === 'en' ? 'Dining room of Makda restaurant in Bernex, Geneva' : 'Salle du restaurant Makda à Bernex, Genève');
 
@@ -34,7 +35,7 @@ const Seo = ({ title, description, path, image = '/og-image.jpg', imageAlt, noin
       {alt && <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${alt.fr}`} />}
       {noindex && <meta name="robots" content="noindex, follow" />}
 
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Makda" />
       <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'fr_CH'} />
       <meta property="og:title" content={title} />

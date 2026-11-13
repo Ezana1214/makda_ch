@@ -1,3 +1,5 @@
+import { articles, articlePath } from './content/journal';
+
 // Langues et adresses des pages. Chaque page a une adresse en français et une en anglais.
 export type Lang = 'fr' | 'en';
 
@@ -14,6 +16,10 @@ export const routes = {
   buffet: { fr: '/buffet-dimanche', en: '/en/sunday-buffet' },
   privateHire: { fr: '/privatisation', en: '/en/private-hire' },
   access: { fr: '/acces-parking', en: '/en/getting-here' },
+  journal: { fr: '/journal', en: '/en/journal' },
+  giftVouchers: { fr: '/bons-cadeaux', en: '/en/gift-vouchers' },
+  giftThanks: { fr: '/bons-cadeaux/merci', en: '/en/gift-vouchers/thank-you' },
+  newsletter: { fr: '/newsletter', en: '/en/newsletter' },
   // pages légales : français uniquement
   privacy: { fr: '/confidentialite', en: '/confidentialite' },
   legal: { fr: '/mentions-legales', en: '/mentions-legales' },
@@ -30,8 +36,17 @@ export const routeIdFromPath = (p: string): RouteId | undefined => {
   return (Object.keys(routes) as RouteId[]).find((id) => routes[id].fr === n || routes[id].en === n);
 };
 
+/** Adresses française et anglaise d'une page (pages fixes et articles du journal). */
+export const pairFromPath = (p: string): { fr: string; en: string } | undefined => {
+  const id = routeIdFromPath(p);
+  if (id) return routes[id];
+  const n = norm(p);
+  const a = articles.find((x) => articlePath(x, 'fr') === n || articlePath(x, 'en') === n);
+  return a ? { fr: articlePath(a, 'fr'), en: articlePath(a, 'en') } : undefined;
+};
+
 /** Adresse équivalente dans l'autre langue (ou accueil de cette langue si la page n'existe pas). */
 export const alternatePath = (p: string, target: Lang): string => {
-  const id = routeIdFromPath(p);
-  return id ? routes[id][target] : routes.home[target];
+  const pair = pairFromPath(p);
+  return pair ? pair[target] : routes.home[target];
 };

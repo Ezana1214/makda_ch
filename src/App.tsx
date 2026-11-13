@@ -14,6 +14,10 @@ import NotFound from './pages/NotFound';
 import MobileActionBar from './components/MobileActionBar';
 import LandingPage from './components/LandingPage';
 import { routes } from './i18n';
+import { JournalIndex, ArticlePage } from './pages/Journal';
+import GiftVouchers, { GiftThanks } from './pages/GiftVouchers';
+import VoucherAdmin from './pages/VoucherAdmin';
+import Newsletter from './pages/Newsletter';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,11 +41,17 @@ function App() {
             <Route key={`catering-${l}`} path={routes.catering[l]} element={<Catering />} />,
             <Route key={`history-${l}`} path={routes.history[l]} element={<History />} />,
             <Route key={`contact-${l}`} path={routes.contact[l]} element={<Contact />} />,
+            <Route key={`gift-${l}`} path={routes.giftVouchers[l]} element={<GiftVouchers />} />,
+            <Route key={`giftThanks-${l}`} path={routes.giftThanks[l]} element={<GiftThanks />} />,
+            <Route key={`newsletter-${l}`} path={routes.newsletter[l]} element={<Newsletter />} />,
+            <Route key={`journal-${l}`} path={routes.journal[l]} element={<JournalIndex />} />,
+            <Route key={`article-${l}`} path={`${routes.journal[l]}/:slug`} element={<ArticlePage />} />,
             ...(['glutenFree', 'buffet', 'privateHire', 'access', 'weddings', 'corporate', 'parties'] as const).map((id) => (
               <Route key={`${id}-${l}`} path={routes[id][l]} element={<LandingPage key={`${id}-${l}`} id={id} />} />
             )),
           ])}
           <Route path="/catering" element={<Navigate to="/traiteur" replace />} />
+          <Route path="/bons-cadeaux/admin" element={<VoucherAdmin />} />
           <Route path="/confidentialite" element={<Privacy />} />
           <Route path="/mentions-legales" element={<LegalNotice />} />
           <Route path="*" element={<NotFound />} />

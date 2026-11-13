@@ -70,7 +70,7 @@ export const landings: Record<LandingId, Record<Lang, LandingContent>> = {
           h2: "Pourquoi l'injera est sans gluten",
           paragraphs: [
             "L'injera est la galette qui sert à la fois d'assiette et de couverts dans la cuisine éthiopienne et érythréenne. Chez Makda, elle est préparée avec 100 % de teff, la plus petite céréale du monde, cultivée depuis des millénaires sur les hauts plateaux d'Éthiopie et naturellement dépourvue de gluten.",
-            "Fermentée plusieurs jours, elle a une saveur légèrement acidulée et une texture souple et alvéolée. Tous nos plats sont servis avec cette injera, des épinards, des pois cassés jaunes et une salade.",
+            "Au fil des années, notre cheffe a perfectionné sa recette : une injera souple et alvéolée, sans le goût acidulé prononcé qu'on lui connaît souvent. Tous nos plats sont servis avec cette injera, des épinards, des pois cassés jaunes et une salade.",
           ],
           image: { src: '/source/assortiment-plats-960.webp', alt: 'Assortiment de plats éthiopiens sur injera au teff' },
         },
@@ -138,7 +138,7 @@ export const landings: Record<LandingId, Record<Lang, LandingContent>> = {
           h2: 'Why injera is gluten-free',
           paragraphs: [
             'Injera is the flatbread that serves as both plate and cutlery in Ethiopian and Eritrean cooking. At Makda it is made with 100% teff, the smallest grain in the world, grown for thousands of years in the Ethiopian highlands and naturally free of gluten.',
-            'Fermented over several days, it has a gently sour taste and a soft, spongy texture. Every dish comes with this injera, spinach, yellow split peas and a salad.',
+            'Over the years our chef has perfected her recipe: a soft, spongy injera without the strong sour taste it is often known for. Every dish comes with this injera, spinach, yellow split peas and a salad.',
           ],
           image: { src: '/source/assortiment-plats-960.webp', alt: 'Selection of Ethiopian dishes on teff injera' },
         },

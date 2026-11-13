@@ -10,6 +10,8 @@ import BuffetBanner from '../components/BuffetBanner';
 import FeaturedDishes from '../components/FeaturedDishes';
 import InfoAccess from '../components/InfoAccess';
 import BookingCTA from '../components/BookingCTA';
+import { LatestArticles } from './Journal';
+import GiftBanner from '../components/GiftBanner';
 
 const Home = () => {
   const { language, L, to } = useLanguage();
@@ -254,6 +256,8 @@ const Home = () => {
         </div>
       </section>
 
+      <GiftBanner />
+      <LatestArticles />
       <InfoAccess />
 
       <BookingCTA dark />

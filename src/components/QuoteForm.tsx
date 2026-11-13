@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 import { restaurant } from '../data/restaurant';
 import { useLanguage } from '../context/LanguageContext';
+import { subscribeNewsletter } from '../lib/newsletter';
 
 export type EventType = 'mariage' | 'entreprise' | 'fete' | 'religieux' | 'privatisation' | 'autre';
 
@@ -41,12 +42,14 @@ const QuoteForm = ({ defaultType }: { defaultType?: EventType }) => {
     const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
     const typeLabel = eventTypes.find((t) => t.id === data.type)?.fr ?? 'événement';
     setStatus('sending');
+    const { newsletter, ...fields } = data;
+    if (newsletter && fields.email) subscribeNewsletter(fields.email, lang, 'devis').catch(() => false);
     try {
       const res = await fetch('https://formsubmit.co/ajax/makda.restaurant@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          ...data,
+          ...fields,
           type: typeLabel,
           langue: lang === 'en' ? 'anglais' : 'français',
           _subject: `Demande de devis – ${typeLabel} – ${data.date || 'date à définir'}`,
@@ -148,6 +151,10 @@ const QuoteForm = ({ defaultType }: { defaultType?: EventType }) => {
           style={border}
         />
       </div>
+      <label className="md:col-span-2 flex items-start gap-2 text-sm cursor-pointer" style={{ color: '#5C3B33' }}>
+        <input type="checkbox" name="newsletter" value="oui" disabled={busy} className="mt-1" />
+        <span>{L("J'accepte aussi de recevoir la newsletter de Makda (environ une fois par mois).", 'I also agree to receive the Makda newsletter (about once a month).')}</span>
+      </label>
       <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4">
         <button

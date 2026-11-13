@@ -5,6 +5,9 @@ import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import { LanguageProvider } from './context/LanguageContext';
 import App from './App';
 export { routes } from './i18n';
+import { articles, articlePath } from './content/journal';
+export const extraPages = ['/bons-cadeaux/admin'];
+export const articlePairs = articles.map((a) => ({ fr: articlePath(a, 'fr'), en: articlePath(a, 'en') }));
 
 export function render(url: string) {
   const helmetContext: { helmet?: HelmetServerState } = {};

@@ -24,10 +24,12 @@ const Navbar = () => {
     { to: to('menu'), label: t('nav.menu') },
     { to: to('catering'), label: t('nav.catering') },
     { to: to('history'), label: t('nav.history') },
+    { to: to('journal'), label: t('nav.journal') },
     { to: to('contact'), label: t('nav.contact') },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    location.pathname === path || (path.endsWith('/journal') && location.pathname.startsWith(`${path}/`));
 
   return (
     <nav

@@ -37,6 +37,18 @@ const Privacy = () => (
             répondre. Le formulaire est transmis par le service FormSubmit (formsubmit.co) vers notre messagerie.
           </li>
           <li>
+            <strong>Bons cadeaux</strong> : nom et e-mail de l'acheteur, nom du bénéficiaire et message, pour créer
+            le bon et en suivre l'utilisation. Le paiement est traité par Stripe (stripe.com) : nous ne voyons ni ne
+            conservons vos données de carte. Les données du bon sont conservées jusqu'à sa date de validité, puis le
+            temps requis par la comptabilité.
+          </li>
+          <li>
+            <strong>Newsletter</strong> : votre adresse e-mail, uniquement si vous avez coché la case d'accord.
+            Elle sert à vous envoyer nos nouvelles (environ une fois par mois), via notre prestataire d'envoi
+            (Brevo). Vous pouvez vous désinscrire à tout moment grâce au lien présent dans chaque e-mail ou en
+            nous écrivant.
+          </li>
+          <li>
             <strong>Réservations</strong> : elles sont gérées par TheFork (TripAdvisor), qui traite vos données
             selon sa propre politique de confidentialité.
           </li>
@@ -64,7 +76,7 @@ const Privacy = () => (
       <div>
         <H2>Transferts à l'étranger</H2>
         <p>
-          Certains prestataires (Cloudflare, Google, FormSubmit, TheFork) peuvent traiter des données hors de
+          Certains prestataires (Cloudflare, Google, FormSubmit, TheFork, Stripe, Brevo) peuvent traiter des données hors de
           Suisse, notamment dans l'Union européenne et aux États-Unis, avec les garanties prévues par la loi.
         </p>
       </div>
