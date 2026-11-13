@@ -90,7 +90,7 @@ export const getVoucher = async (env: Env, code: string): Promise<Voucher | null
 export const saveVoucher = (env: Env, v: Voucher) => env.MAKDA_KV.put(`voucher:${v.code}`, JSON.stringify(v));
 
 export const stripe = async (env: Env, method: 'GET' | 'POST', path: string, body?: URLSearchParams) => {
-  if (!env.STRIPE_SECRET_KEY) throw new Error('STRIPE_SECRET_KEY manquant');
+  if (!env.STRIPE_SECRET_KEY) throw Object.assign(new Error('STRIPE_SECRET_KEY manquant'), { info: { code: 'missing_key' } });
   const res = await fetch(`${env.STRIPE_API_BASE ?? 'https://api.stripe.com'}/v1/${path}`, {
     method,
     headers: {
@@ -100,7 +100,12 @@ export const stripe = async (env: Env, method: 'GET' | 'POST', path: string, bod
     body: body?.toString(),
   });
   const data = (await res.json()) as Record<string, unknown>;
-  if (!res.ok) throw new Error(`Stripe ${res.status}: ${JSON.stringify((data as { error?: unknown }).error ?? data)}`);
+  if (!res.ok) {
+    const err = (data as { error?: { type?: string; code?: string; param?: string; message?: string } }).error ?? {};
+    throw Object.assign(new Error(`Stripe ${res.status}: ${err.message ?? ''}`), {
+      info: { status: res.status, type: err.type, code: err.code, param: err.param },
+    });
+  }
   return data;
 };
 

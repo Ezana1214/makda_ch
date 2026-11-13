@@ -62,7 +62,8 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     session = await stripe(env, 'POST', 'checkout/sessions', p);
   } catch (e) {
     console.error(e);
-    return json({ error: 'stripe' }, 502);
+    // détail technique (sans données sensibles) pour diagnostiquer un réglage Stripe
+    return json({ error: 'stripe', detail: (e as { info?: unknown }).info ?? null }, 500);
   }
 
   const v: Voucher = {
