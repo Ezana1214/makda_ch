@@ -20,9 +20,10 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     await env.MAKDA_KV.put(key, JSON.stringify({ email, lang, source, createdAt: new Date().toISOString() }));
   }
 
+  let brevo: number | string = 'off';
   if (env.BREVO_API_KEY && env.BREVO_LIST_ID) {
     try {
-      await fetch('https://api.brevo.com/v3/contacts', {
+      const res = await fetch('https://api.brevo.com/v3/contacts', {
         method: 'POST',
         headers: { 'api-key': env.BREVO_API_KEY, 'content-type': 'application/json', accept: 'application/json' },
         body: JSON.stringify({
@@ -31,9 +32,12 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
           updateEnabled: true,
         }),
       });
+      brevo = res.status; // 201/204 = ajouté dans Brevo
+      if (!res.ok) console.error('Brevo', res.status, await res.text());
     } catch (e) {
+      brevo = 'error';
       console.error(e);
     }
   }
-  return json({ ok: true });
+  return json({ ok: true, brevo });
 };
