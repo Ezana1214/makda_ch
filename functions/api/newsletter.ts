@@ -33,7 +33,10 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
         }),
       });
       brevo = res.status; // 201/204 = ajouté dans Brevo
-      if (!res.ok) console.error('Brevo', res.status, await res.text());
+      if (!res.ok) {
+        const err = (await res.json().catch(() => ({}))) as { code?: string; message?: string };
+        brevo = `${res.status} ${err.code ?? ''} ${(err.message ?? '').replace(/\d{1,3}(\.\d{1,3}){3}|[0-9a-f:]{6,}/gi, '…').slice(0, 160)}`.trim();
+      }
     } catch (e) {
       brevo = 'error';
       console.error(e);
