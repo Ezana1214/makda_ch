@@ -72,7 +72,7 @@ export const onRequestGet = async ({ params, env }: Ctx) => {
         `<div class="notice"><h1>${pending ? T('Paiement en cours…', 'Payment in progress…') : T('Bon non valide', 'Voucher not valid')}</h1><p>${
           pending
             ? T('Nous attendons la confirmation de votre paiement. Cette page se met à jour toute seule.', 'We are waiting for your payment to be confirmed. This page refreshes automatically.')
-            : T("Ce bon n'a pas été payé. Contactez-nous au +41 76 679 28 45.", 'This voucher was not paid. Contact us on +41 76 679 28 45.')
+            : T("Ce bon n'est plus valable (paiement non abouti, annulé ou remboursé). Contactez-nous au +41 76 679 28 45.", 'This voucher is no longer valid (payment not completed, cancelled or refunded). Contact us on +41 76 679 28 45.')
         }</p></div>`,
         pending
       ),

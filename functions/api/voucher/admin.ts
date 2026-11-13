@@ -76,5 +76,17 @@ export const onRequestPost = async (ctx: Ctx) => {
     return json({ voucher: v });
   }
 
+  if (action === 'cancel') {
+    // bon remboursé ou annulé : il ne peut plus être utilisé
+    v = {
+      ...v,
+      status: 'cancelled',
+      balance: 0,
+      redemptions: [...v.redemptions, { at: new Date().toISOString(), amount: 0, note: clean(body.note, 120) || 'Annulé (remboursé)' }],
+    };
+    await saveVoucher(env, v);
+    return json({ voucher: v });
+  }
+
   return json({ error: 'action' }, 400);
 };

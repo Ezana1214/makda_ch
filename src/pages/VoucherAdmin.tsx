@@ -118,6 +118,17 @@ const VoucherAdmin = () => {
     } else setMsg({ ok: false, text: errors[data?.error] ?? 'Erreur, réessayez.' });
   };
 
+  const cancel = async () => {
+    if (!v) return;
+    if (!window.confirm(`Annuler définitivement le bon ${v.code} (par exemple après un remboursement dans Stripe) ? Il ne pourra plus être utilisé.`)) return;
+    setBusy(true);
+    const { res, data } = await api({ pin, action: 'cancel', code: v.code });
+    setBusy(false);
+    if (data?.voucher) setV(data.voucher);
+    setMsg(res.ok ? { ok: true, text: `Bon ${v.code} annulé.` } : { ok: false, text: errors[data?.error] ?? 'Erreur, réessayez.' });
+    if (res.ok && list) loadList();
+  };
+
   const loadList = async () => {
     const { res, data } = await api({ pin, action: 'list' });
     if (res.ok) setList(data.vouchers);
@@ -247,6 +258,13 @@ const VoucherAdmin = () => {
                         Déduire
                       </button>
                     </form>
+                  )}
+                  {v.status === 'paid' && (
+                    <p className="mt-5 text-right">
+                      <button type="button" onClick={cancel} disabled={busy} className="text-sm underline disabled:opacity-60" style={{ color: red }}>
+                        Annuler ce bon (remboursé)
+                      </button>
+                    </p>
                   )}
                 </div>
               )}
